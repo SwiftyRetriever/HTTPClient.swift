@@ -1,0 +1,4 @@
+github "Alamofire/Alamofire" "4.8.0"
+github "ReactiveX/RxSwift" "4.4.0"
+github "alibaba/HandyJSON" "4.2.1"
+github "antitypical/Result" "4.0.0"
