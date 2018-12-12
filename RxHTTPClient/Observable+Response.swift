@@ -7,7 +7,9 @@
 //
 
 import RxSwift
+#if !COCOAPODS
 import HTTPClient
+#endif
 
 extension ObservableType where E == Response {
     

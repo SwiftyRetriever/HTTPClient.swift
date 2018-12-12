@@ -7,7 +7,9 @@
 //
 
 import RxSwift
+#if !COCOAPODS
 import HTTPClient
+#endif
 
 extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Response {
     

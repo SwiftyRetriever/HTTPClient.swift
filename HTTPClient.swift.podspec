@@ -24,11 +24,12 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   s.author       = { "zevwings" => "zev.wings@gmail.com" }
   s.source       = { :git => "https://github.com/zevwings/HTTPClient.swift.git", :tag => s.version }
+  s.requires_arc = true
+  s.swift_version = '4.2'
+  s.ios.deployment_target = '8.0'
 
   s.default_subspec = "Core"
-  s.swift_version = '4.2'
-  s.cocoapods_version = '>= 1.4.0'  
-
+  
   s.subspec "Core" do |core|
     core.source_files  = "HTTPClient/**/*.{h,m,swift}"
     core.dependency "Alamofire"
