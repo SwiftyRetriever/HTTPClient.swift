@@ -1,12 +1,12 @@
 //
-//  CommonResponseValidator.swift
+//  CommonTransformer.swift
 //  HTTPClient
 //
 //  Created by 张伟 on 2018/12/12.
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
-public enum ValidatorError: Error {
+public enum TransformerError: Error {
     case statusCode
     case emptyResponse
     case server(code: Int, message: String?)
@@ -44,41 +44,41 @@ public struct BasicModel {
     }
 }
 
-public final class CommonResponseValidator: ResponseValidator {
+public final class CommonTransformer: Transformer {
     
     public init() {}
     
-    public func validate(_ response: Response) throws -> Any {
+    public func transform(_ response: Response) throws -> Any {
         
         /// 校验response的statuscode是否为2xx和3xx
         let _response: Response
         do {
             _response = try response.validate(.successAndRedirectCodes)
         } catch {
-            throw ValidatorError.statusCode
+            throw TransformerError.statusCode
         }
         
         guard let jsonObject = try _response.mapJSON() as? [String: Any] else {
-            throw ValidatorError.emptyResponse
+            throw TransformerError.emptyResponse
         }
         
         /// 检验返回体中`code`是否为成功
         let bodyCode = try codeValue(from: jsonObject[BasicModel.Body.code])
         let bodyMsg = jsonObject[BasicModel.Body.message] as? String
         guard bodyCode == 200 else {
-            throw ValidatorError.server(code: bodyCode, message: bodyMsg)
+            throw TransformerError.server(code: bodyCode, message: bodyMsg)
         }
         
         /// 检验返回体中`model`是否为空
         guard let model = jsonObject[BasicModel.Body.model] as? [String: Any] else {
-            throw ValidatorError.modelDeficiency
+            throw TransformerError.modelDeficiency
         }
         
         /// 检查`model.success`是否为成功
         let modelCode = try codeValue(from: model[BasicModel.Model.code])
         let modelMsg = model[BasicModel.Model.message] as? String
         guard modelCode == 0 else {
-            throw ValidatorError.business(code: bodyCode, message: modelMsg)
+            throw TransformerError.business(code: bodyCode, message: modelMsg)
         }
         
         return model
@@ -95,14 +95,14 @@ public final class CommonResponseValidator: ResponseValidator {
         } else if let code = value as? Int {
             return code
         } else {
-            throw ValidatorError.invalidResponseBody
+            throw TransformerError.invalidResponseBody
         }
     }
 }
 
 // MARK: - ResponseError
 
-extension ValidatorError: LocalizedError {
+extension TransformerError: LocalizedError {
     
     private var defaultErrorMessage: String {
         return "服务器返回数据错误"
@@ -121,7 +121,7 @@ extension ValidatorError: LocalizedError {
     }
 }
 
-extension ValidatorError: CustomStringConvertible, CustomDebugStringConvertible {
+extension TransformerError: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
         switch self {

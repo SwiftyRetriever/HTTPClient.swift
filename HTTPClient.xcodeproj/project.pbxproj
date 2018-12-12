@@ -24,8 +24,8 @@
 		4DCA580521C13B8600576C43 /* AFRequestAlterative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580421C13B8600576C43 /* AFRequestAlterative.swift */; };
 		4DCA580721C13B9400576C43 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580621C13B9400576C43 /* Response.swift */; };
 		4DCA580921C13BA600576C43 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580821C13BA600576C43 /* Model.swift */; };
-		4DCA580B21C13BB300576C43 /* ResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580A21C13BB300576C43 /* ResponseValidator.swift */; };
-		4DCA580D21C13BC400576C43 /* CommonResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580C21C13BC400576C43 /* CommonResponseValidator.swift */; };
+		4DCA580B21C13BB300576C43 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580A21C13BB300576C43 /* Transformer.swift */; };
+		4DCA580D21C13BC400576C43 /* CommonTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580C21C13BC400576C43 /* CommonTransformer.swift */; };
 		4DCA581C21C13D5400576C43 /* RxHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA581321C13D5400576C43 /* RxHTTPClient.framework */; };
 		4DCA582121C13D5400576C43 /* RxHTTPClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA582021C13D5400576C43 /* RxHTTPClientTests.m */; };
 		4DCA582321C13D5400576C43 /* RxHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DCA581521C13D5400576C43 /* RxHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -79,8 +79,8 @@
 		4DCA580421C13B8600576C43 /* AFRequestAlterative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFRequestAlterative.swift; sourceTree = "<group>"; };
 		4DCA580621C13B9400576C43 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		4DCA580821C13BA600576C43 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		4DCA580A21C13BB300576C43 /* ResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseValidator.swift; sourceTree = "<group>"; };
-		4DCA580C21C13BC400576C43 /* CommonResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResponseValidator.swift; sourceTree = "<group>"; };
+		4DCA580A21C13BB300576C43 /* Transformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformer.swift; sourceTree = "<group>"; };
+		4DCA580C21C13BC400576C43 /* CommonTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTransformer.swift; sourceTree = "<group>"; };
 		4DCA581321C13D5400576C43 /* RxHTTPClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxHTTPClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DCA581521C13D5400576C43 /* RxHTTPClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxHTTPClient.h; sourceTree = "<group>"; };
 		4DCA581621C13D5400576C43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 				4DCA580421C13B8600576C43 /* AFRequestAlterative.swift */,
 				4DCA580621C13B9400576C43 /* Response.swift */,
 				4DCA580821C13BA600576C43 /* Model.swift */,
-				4DCA580A21C13BB300576C43 /* ResponseValidator.swift */,
-				4DCA580C21C13BC400576C43 /* CommonResponseValidator.swift */,
+				4DCA580A21C13BB300576C43 /* Transformer.swift */,
+				4DCA580C21C13BC400576C43 /* CommonTransformer.swift */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -399,13 +399,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DCA580B21C13BB300576C43 /* ResponseValidator.swift in Sources */,
+				4DCA580B21C13BB300576C43 /* Transformer.swift in Sources */,
 				4DCA57F521C13A8B00576C43 /* MultipartFormData.swift in Sources */,
 				4DCA580521C13B8600576C43 /* AFRequestAlterative.swift in Sources */,
 				4DCA57FF21C13AEC00576C43 /* HTTPError.swift in Sources */,
 				4DCA57EB21C139CE00576C43 /* HTTPClient.swift in Sources */,
 				4DCA57F121C13A2500576C43 /* Requestable.swift in Sources */,
-				4DCA580D21C13BC400576C43 /* CommonResponseValidator.swift in Sources */,
+				4DCA580D21C13BC400576C43 /* CommonTransformer.swift in Sources */,
 				4DCA57EF21C13A1800576C43 /* ValidationType.swift in Sources */,
 				4DCA580721C13B9400576C43 /* Response.swift in Sources */,
 				4DCA580921C13BA600576C43 /* Model.swift in Sources */,

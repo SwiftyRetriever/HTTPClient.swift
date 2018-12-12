@@ -93,9 +93,9 @@ extension Response {
         return string
     }
     
-    public func map<T>(to type: T.Type, atKeyPath keyPath: String? = nil, validator: ResponseValidator = CommonResponseValidator()) throws -> T where T: Model {
+    public func map<T>(to type: T.Type, atKeyPath keyPath: String? = nil, transformer: Transformer = CommonTransformer()) throws -> T where T: Model {
         do {
-            let result = try validator.validate(self)
+            let result = try transformer.transform(self)
             return try T.transform(result, atKeyPath: keyPath)
         } catch {
             throw HTTPError.underlying(error, request: request, response: response)
