@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.homepage     = "hhttps://github.com/zevwings/HTTPClient.swift"
   s.license      = "MIT"
   s.author       = { "zevwings" => "zev.wings@gmail.com" }
-  s.source       = { "https://github.com/zevwings/HTTPClient.swift.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/zevwings/HTTPClient.swift.git", :tag => s.version }
 
   s.default_subspec = "Core"
   s.swift_version = '4.2'
