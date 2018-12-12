@@ -33,6 +33,7 @@ Pod::Spec.new do |s|
     core.source_files  = "HTTPClient/**/*.{h,m,swift}"
     core.dependency "Alamofire"
     core.dependency "Result"
+    core.dependency "HandyJSON"
     core.framework  = "Foundation"
   end
 
