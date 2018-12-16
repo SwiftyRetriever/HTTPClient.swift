@@ -143,4 +143,11 @@ extension AFRequestAlterative where Self: DownloadRequest {
 extension DataRequest: AFRequestAlterative {}
 extension DownloadRequest: AFRequestAlterative {}
 
+protocol AFRequestValidatable {
+    
+    func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Sequence, S.Element == Int
+}
+
+extension DataRequest: AFRequestValidatable {}
+extension DownloadRequest: AFRequestValidatable {}
 

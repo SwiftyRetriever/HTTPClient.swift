@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D054AE821C3F16700688207 /* PluginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D054AE721C3F16700688207 /* PluginType.swift */; };
 		4DCA57DA21C1384A00576C43 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA57D021C1384A00576C43 /* HTTPClient.framework */; };
 		4DCA57DF21C1384A00576C43 /* HTTPClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57DE21C1384A00576C43 /* HTTPClientTests.m */; };
 		4DCA57E121C1384A00576C43 /* HTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DCA57D321C1384A00576C43 /* HTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,6 +40,7 @@
 		4DCA583821C13F3300576C43 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583321C13F1C00576C43 /* Alamofire.framework */; };
 		4DCA583921C13F3300576C43 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583121C13F1C00576C43 /* HandyJSON.framework */; };
 		4DCA583A21C13F3300576C43 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583221C13F1C00576C43 /* Result.framework */; };
+		4DD39B9A21C4B6CE005F8EF1 /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD39B9921C4B6CE005F8EF1 /* Constructor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D054AE721C3F16700688207 /* PluginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginType.swift; sourceTree = "<group>"; };
 		4DCA57D021C1384A00576C43 /* HTTPClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTTPClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DCA57D321C1384A00576C43 /* HTTPClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPClient.h; sourceTree = "<group>"; };
 		4DCA57D421C1384A00576C43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 		4DCA583121C13F1C00576C43 /* HandyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HandyJSON.framework; path = Carthage/Build/iOS/HandyJSON.framework; sourceTree = "<group>"; };
 		4DCA583221C13F1C00576C43 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		4DCA583321C13F1C00576C43 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		4DD39B9921C4B6CE005F8EF1 /* Constructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 				4DCA57EE21C13A1800576C43 /* ValidationType.swift */,
 				4DCA57F021C13A2500576C43 /* Requestable.swift */,
 				4DCA57F221C13A7D00576C43 /* Builder.swift */,
+				4DD39B9921C4B6CE005F8EF1 /* Constructor.swift */,
 				4DCA57F421C13A8B00576C43 /* MultipartFormData.swift */,
 				4DCA57F621C13AA600576C43 /* Task.swift */,
 				4DCA57FC21C13AC100576C43 /* HTTPTask.swift */,
@@ -180,6 +185,7 @@
 				4DCA580821C13BA600576C43 /* Model.swift */,
 				4DCA580A21C13BB300576C43 /* Transformer.swift */,
 				4DCA580C21C13BC400576C43 /* CommonTransformer.swift */,
+				4D054AE721C3F16700688207 /* PluginType.swift */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 			files = (
 				4DCA580B21C13BB300576C43 /* Transformer.swift in Sources */,
 				4DCA57F521C13A8B00576C43 /* MultipartFormData.swift in Sources */,
+				4D054AE821C3F16700688207 /* PluginType.swift in Sources */,
 				4DCA580521C13B8600576C43 /* AFRequestAlterative.swift in Sources */,
 				4DCA57FF21C13AEC00576C43 /* HTTPError.swift in Sources */,
 				4DCA57EB21C139CE00576C43 /* HTTPClient.swift in Sources */,
@@ -412,6 +419,7 @@
 				4DCA57FD21C13AC100576C43 /* HTTPTask.swift in Sources */,
 				4DCA580321C13B7100576C43 /* HTTPClient+Internal.swift in Sources */,
 				4DCA57ED21C139DD00576C43 /* Serviceable.swift in Sources */,
+				4DD39B9A21C4B6CE005F8EF1 /* Constructor.swift in Sources */,
 				4DCA57F721C13AA600576C43 /* Task.swift in Sources */,
 				4DCA580121C13AF900576C43 /* Client.swift in Sources */,
 				4DCA57F321C13A7D00576C43 /* Builder.swift in Sources */,

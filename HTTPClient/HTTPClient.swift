@@ -10,6 +10,8 @@ import Result
 
 public final class HTTPClient<R: Requestable>: Client {
     
+    public typealias URLRequestConstractor = (Requestable) -> URLRequest?
+    
     public let manager: SessionManager
     
     public init() {
@@ -24,6 +26,8 @@ public final class HTTPClient<R: Requestable>: Client {
                      completionHandler: @escaping (CompletionHandler))
         -> Task? {
             
+            let r = HTTPClient.defaultRequestConstructor(request)
+            
             let errorHandler: (Error) -> Void = { error in
                 self.buildErrorHander(request: request, error: error, completionHandler: completionHandler)
             }
@@ -33,9 +37,7 @@ public final class HTTPClient<R: Requestable>: Client {
             }
             
             let initalRequest = manager.request(urlRequest)
-            let statusCodes = request.validationType.statusCodes
-            let alamofireRequest = statusCodes.isEmpty ? initalRequest : initalRequest.validate(statusCode: statusCodes)
-            let task = sendAlamofireRequest(alamofireRequest,
+            let task = sendAlamofireRequest(initalRequest,
                                             request: request,
                                             queue: queue,
                                             progressHandler: progressHandler,
@@ -69,10 +71,7 @@ public final class HTTPClient<R: Requestable>: Client {
             }
             
             let initalRequest = manager.download(urlRequest, to: destination)
-            let statusCodes = request.validationType.statusCodes
-            let alamofireRequest = statusCodes.isEmpty ? initalRequest : initalRequest.validate(statusCode: statusCodes)
-            
-            let task = sendAlamofireRequest(alamofireRequest,
+            let task = sendAlamofireRequest(initalRequest,
                                             request: request,
                                             queue: queue,
                                             progressHandler: progressHandler,
@@ -98,10 +97,7 @@ public final class HTTPClient<R: Requestable>: Client {
             }
             
             let initalRequest = manager.upload(fileURL, with: urlRequest)
-            let statusCodes = request.validationType.statusCodes
-            let alamofireRequest = statusCodes.isEmpty ? initalRequest : initalRequest.validate(statusCode: statusCodes)
-            
-            let task = sendAlamofireRequest(alamofireRequest,
+            let task = sendAlamofireRequest(initalRequest,
                                             request: request,
                                             queue: queue,
                                             progressHandler: progressHandler,

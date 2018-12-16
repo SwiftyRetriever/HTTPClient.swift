@@ -9,7 +9,7 @@
 extension HTTPClient {
     
     /// 构建默认的Alamofire.SessionManager
-    class func defaultAlamofireManager() -> SessionManager {
+    public class func defaultAlamofireManager() -> SessionManager {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         configuration.timeoutIntervalForRequest = 20.0
@@ -17,6 +17,10 @@ extension HTTPClient {
         let manager = SessionManager(configuration: configuration)
         manager.startRequestsImmediately = false
         return manager
+    }
+    
+    public final class func defaultRequestConstructor<R>(_ request: R) -> URLRequest? where R: Requestable {
+        return nil
     }
     
     /// 发起网络请求
@@ -32,9 +36,11 @@ extension HTTPClient {
                                   queue: DispatchQueue?,
                                   progressHandler: ProgressHandler?,
                                   completionHandler: @escaping CompletionHandler)
-        -> Task where AF: AFRequestAlterative, AF: Request {
+        -> Task where AF: AFRequestAlterative, AF: AFRequestValidatable , AF: Request {
             
-            var progressAlamofireRequest = alamofireRequest
+            let statusCodes = request.validationType.statusCodes
+            var progressAlamofireRequest = statusCodes.isEmpty ? alamofireRequest : alamofireRequest.validate(statusCode: statusCodes)
+            
             if progressHandler != nil {
                 progressAlamofireRequest = alamofireRequest.progress(queue: queue, progressHandler: progressHandler!)
             }
