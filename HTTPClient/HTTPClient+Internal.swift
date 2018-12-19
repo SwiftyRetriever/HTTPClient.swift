@@ -36,7 +36,7 @@ extension HTTPClient {
                                   queue: DispatchQueue?,
                                   progressHandler: ProgressHandler?,
                                   completionHandler: @escaping CompletionHandler)
-        -> Task where AF: AFRequestAlterative, AF: AFRequestValidatable , AF: Request {
+        -> Task where AF: AFRequestAlterative , AF: Request {
             
             let statusCodes = request.validationType.statusCodes
             var progressAlamofireRequest = statusCodes.isEmpty ? alamofireRequest : alamofireRequest.validate(statusCode: statusCodes)
@@ -66,5 +66,6 @@ extension HTTPClient {
             completionHandler(.failure(err))
         }
     }
+
 }
 

@@ -30,6 +30,12 @@ protocol AFRequestAlterative {
     /// - Returns: Request
     func response(queue: DispatchQueue?, completionHandler: @escaping CompletionHandler) -> Self
     
+    /// 格式化网络请求返回Code验证
+    ///
+    /// - Parameter acceptableStatusCodes: 验证序列
+    /// - Returns: Request
+    func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Sequence, S.Element == Int
+
 }
 
 extension AFRequestAlterative {
@@ -142,12 +148,4 @@ extension AFRequestAlterative where Self: DownloadRequest {
 
 extension DataRequest: AFRequestAlterative {}
 extension DownloadRequest: AFRequestAlterative {}
-
-protocol AFRequestValidatable {
-    
-    func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Sequence, S.Element == Int
-}
-
-extension DataRequest: AFRequestValidatable {}
-extension DownloadRequest: AFRequestValidatable {}
 
