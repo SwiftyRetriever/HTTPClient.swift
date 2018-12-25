@@ -10,7 +10,7 @@ import RxSwift
 #if !COCOAPODS
 import HTTPClient
 #endif
-
+/*
 extension HTTPClient: ReactiveCompatible {}
 
 public extension Reactive where Base: Client {
@@ -110,3 +110,4 @@ public extension Reactive where Base: Client {
     }
 }
 
+*/

@@ -8,7 +8,48 @@
 
 import Foundation
 
-open class Constructor {
+public protocol Constructor {
+    
+    var service: Serviceable { get }
+    var path: String { get }
+    var method: HTTPMethod { get }
+    var headerFields: HTTPHeaders? { get }
+    var parameters: Parameters? { get }
+    var formatter: ParameterFormatter { get }
+    
+    func urlRequest() throws -> URLRequest
+}
+
+extension Constructor {
+    
+    public func urlRequest() throws -> URLRequest {
+        
+        guard let url = URL(string: path, relativeTo: service.url) else {
+            throw HTTPError.invalidUrl(service: service.baseUrl,
+                                       path: path)
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.rawValue
+        
+        headerFields?.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
+        
+        var encoding: AFParameterEncoding
+        switch formatter {
+        case .json:
+            encoding = AFJSONEncoding.default
+        case .url:
+            encoding = AFURLEncoding.default
+        }
+        
+        urlRequest = try encoding.encode(urlRequest, with: parameters)
+        
+        return urlRequest
+    }
+
+}
+
+public class CommonConstructor: Constructor {
     
     public let service: Serviceable
     public let path: String
@@ -31,43 +72,4 @@ open class Constructor {
         self.parameters = parameters
         self.formatter = formatter
     }
-    
-    func urlRequest() throws -> URLRequest {
-        
-        guard let url = URL(string: path, relativeTo: service.url) else {
-            throw HTTPError.invalidUrl(service: service.baseUrl,
-                                       path: path)
-        }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = method.rawValue
-        
-        headerFields?.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
-        
-//        let params = try intercept(paramters: parameters)
-//
-//        do {
-//            try inspect(paramters: params)
-//        } catch {
-//            throw HTTPError.invalidParameters(service: service.baseUrl,
-//                                              path: path,
-//                                              paramters: parameters,
-//                                              error: error)
-//        }
-        
-        var encoding: ParameterEncoding
-        switch formatter {
-        case .json:
-            encoding = JSONEncoding.default
-        case .url:
-            encoding = URLEncoding.default
-        }
-        
-        urlRequest = try encoding.encode(urlRequest, with: parameters)
-        
-//        urlRequest = try intercept(request: urlRequest)
-        
-        return urlRequest
-    }
-
 }

@@ -19,7 +19,7 @@ public enum ParameterFormatter {
     /** case xml 暂时不需要支持`xml`格式 */
 }
 
-public protocol Requestable {
+public protocol Requestable: RequestValidator, RequestInterceptor {
     
     /// 服务类型
     associatedtype Service: Serviceable
@@ -87,5 +87,13 @@ extension Requestable {
     public func intercept(request: URLRequest) throws -> URLRequest {
         return request
     }
+}
+
+public protocol RequestInterceptor {
+    var get: String { get }
+}
+
+public protocol RequestValidator {
+    var get: String { get }
 }
 

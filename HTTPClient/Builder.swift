@@ -39,12 +39,12 @@ internal final class Builder<R: Requestable> {
                                               error: error)
         }
         
-        var encoding: ParameterEncoding
+        var encoding: AFParameterEncoding
         switch request.formatter {
         case .json:
-            encoding = JSONEncoding.default
+            encoding = AFJSONEncoding.default
         case .url:
-            encoding = URLEncoding.default
+            encoding = AFURLEncoding.default
         }
         
         urlRequest = try encoding.encode(urlRequest, with: params)

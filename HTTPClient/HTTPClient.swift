@@ -7,7 +7,7 @@
 //
 
 import Result
-
+/*
 public final class HTTPClient<R: Requestable>: Client {
     
     public typealias URLRequestConstractor = (Requestable) -> URLRequest?
@@ -18,27 +18,28 @@ public final class HTTPClient<R: Requestable>: Client {
         self.manager = manager
     }
     
+    /*
     
-    func buildURLRequest(_ request: R) -> Result<URLRequest, HTTPError> {
-        
-        do {
-            let parameters = try request.intercept(paramters: request.parameters)
-            let constructor = Constructor(service: request.service,
-                                          path: request.path,
-                                          method: request.method,
-                                          headerFields: request.headers,
-                                          parameters: parameters,
-                                          formatter: request.formatter)
-            var urlRequest = try constructor.urlRequest()
-            urlRequest = try request.intercept(request: urlRequest)
-            return .success(urlRequest)
-        } catch let error as HTTPError {
-            return .failure(error)
-        } catch let error {
-            let err = HTTPError.request(service: request.service.baseUrl, path: request.path, error: error)
-            return .failure(err)
-        }
-    }
+//    func buildURLRequest(_ request: R) -> Result<URLRequest, HTTPError> {
+//
+//        do {
+//            let parameters = try request.intercept(paramters: request.parameters)
+//            let constructor = Constructor(service: request.service,
+//                                          path: request.path,
+//                                          method: request.method,
+//                                          headerFields: request.headers,
+//                                          parameters: parameters,
+//                                          formatter: request.formatter)
+//            var urlRequest = try constructor.urlRequest()
+//            urlRequest = try request.intercept(request: urlRequest)
+//            return .success(urlRequest)
+//        } catch let error as HTTPError {
+//            return .failure(error)
+//        } catch let error {
+//            let err = HTTPError.request(service: request.service.baseUrl, path: request.path, error: error)
+//            return .failure(err)
+//        }
+//    }
     
     // MARK: Data
     @discardableResult
@@ -171,6 +172,7 @@ public final class HTTPClient<R: Requestable>: Client {
             }
             
             return task
-    }
+    }*/
 }
 
+*/

@@ -12,19 +12,19 @@ public final class HTTPTask: Task {
     
     public private(set) var isCancelled: Bool = false
     
-    public let request: Request
+    private let request: AFRequest
     
     private let cancelAction: CancelAction
     
     private var lock: DispatchSemaphore = DispatchSemaphore(value: 1)
     
-    public convenience init(_ request: Request) {
+    public convenience init(_ request: AFRequest) {
         self.init(request) {
             request.cancel()
         }
     }
     
-    public init(_ request: Request, action: @escaping CancelAction) {
+    public init(_ request: AFRequest, action: @escaping CancelAction) {
         self.request = request
         self.cancelAction = action
     }

@@ -12,30 +12,39 @@ public typealias HTTPMethod = Alamofire.HTTPMethod
 public typealias SessionManager = Alamofire.SessionManager
 
 // Request
-public typealias Request = Alamofire.Request
-public typealias DataRequest = Alamofire.DataRequest
+public typealias AFRequest = Alamofire.Request
+public typealias AFDataRequest = Alamofire.DataRequest
 
 // Upload
-public typealias UploadRequest = Alamofire.UploadRequest
+public typealias AFUploadRequest = Alamofire.UploadRequest
 public typealias AFMultipartFormData = Alamofire.MultipartFormData
 
 // Download
-public typealias DownloadRequest = Alamofire.DownloadRequest
-public typealias DownloadDestination = Alamofire.DownloadRequest.DownloadFileDestination
+public typealias AFDownloadRequest = Alamofire.DownloadRequest
+public typealias AFDownloadDestination = Alamofire.DownloadRequest.DownloadFileDestination
 
 // ParameterEncoding
-public typealias ParameterEncoding = Alamofire.ParameterEncoding
-public typealias JSONEncoding = Alamofire.JSONEncoding
-public typealias URLEncoding = Alamofire.URLEncoding
+public typealias AFParameterEncoding = Alamofire.ParameterEncoding
+public typealias AFJSONEncoding = Alamofire.JSONEncoding
+public typealias AFURLEncoding = Alamofire.URLEncoding
 
 // Results
-public typealias DataResponseSerializerProtocol = Alamofire.DataResponseSerializerProtocol
+public typealias AFDataResponseSerializerProtocol = Alamofire.DataResponseSerializerProtocol
 public typealias AFResult = Alamofire.Result
-public typealias Timeline = Alamofire.Timeline
+public typealias AFTimeline = Alamofire.Timeline
+
+public enum RequestType {
+    case request
+    case download(destination: AFDownloadDestination?)
+    case upload(fileURL: URL)
+    case upload(mutipartFormData: [MultipartFormData])
+}
 
 public protocol Client: AnyObject {
     
     associatedtype R: Requestable
+    
+    func send(request: R, task: RequestType, queue: DispatchQueue?, progressHandler: ProgressHandler?, completionHandler: @escaping (CompletionHandler)) -> Task?
     
     /// 发送一个网络请求
     ///
@@ -56,7 +65,7 @@ public protocol Client: AnyObject {
     ///   - progressHandler: 进度回调
     ///   - completionHandler: 完成回调
     /// - Returns: 请求任务
-    func downlown(request: R, destination: DownloadDestination?, queue: DispatchQueue?, progressHandler: ProgressHandler?, completionHandler: @escaping (CompletionHandler)) -> Task?
+    func downlown(request: R, destination: AFDownloadDestination?, queue: DispatchQueue?, progressHandler: ProgressHandler?, completionHandler: @escaping (CompletionHandler)) -> Task?
     
     /// 根据文件URL，上传一个文件到服务器
     ///
