@@ -131,10 +131,10 @@ public final class HTTPClient<R: Requestable>: Client {
         
         let urlRequest: URLRequest
         do {
-            let paramInterceptor = { parameters -> (Parameters?) in
+            let paramsHandler = { parameters -> (Parameters?) in
                 return parameters
             }
-            urlRequest = try request.urlRequest(with: paramInterceptor)
+            urlRequest = try request.urlRequest(with: paramsHandler)
         } catch let error as HTTPError {
             completionHandler(.failure(error))
             return nil

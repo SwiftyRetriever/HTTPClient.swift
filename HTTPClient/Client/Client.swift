@@ -1,11 +1,12 @@
 //
-//  Configration.swift
+//  Client.swift
 //  HTTPClient
 //
-//  Created by zevwings on 2018/12/26.
+//  Created by 张伟 on 2018/12/12.
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
+import Foundation
 import Alamofire
 
 // Public
@@ -26,16 +27,29 @@ internal typealias ParameterEncoding = Alamofire.ParameterEncoding
 internal typealias JSONEncoding = Alamofire.JSONEncoding
 internal typealias URLEncoding = Alamofire.URLEncoding
 
-/// 网络请求头
-public typealias HTTPHeaders = [String: String]
 
-/// 网络请求参数
-public typealias Parameters = [String: Any]
 
-/// 参数格式化类型，根据格式化类型选取`Alamofire`的`ParameterEncoding`
-public enum ParameterFormatter {
-    case url
-    case json
-    /** case xml 暂时不需要支持`xml`格式 */
+public enum RequestType {
+    case data
+    case download(destination: Destination?)
+    case uploadFile(fileURL: URL)
+    case uploadFormData(mutipartFormData: [MultipartFormData])
+}
+
+public protocol Client: AnyObject {
+    
+    associatedtype R: Requestable
+    
+    /// 发送一个网络请求
+    ///
+    /// - Parameters:
+    ///   - request: Requestable
+    ///   - requestType: 请求类型
+    ///   - queue: 回调线程
+    ///   - progressHandler: 进度回调
+    ///   - completionHandler: 完成回调
+    /// - Returns: 请求任务
+    func send(request: R, requestType: RequestType, queue: DispatchQueue?, progressHandler: ProgressHandler?, completionHandler: @escaping (CompletionHandler)) -> Task?
+
 }
 
