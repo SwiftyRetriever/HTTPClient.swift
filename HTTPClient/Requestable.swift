@@ -27,7 +27,7 @@ public protocol Requestable: RequestValidator, RequestInterceptor {
     var formatter: ParameterFormatter { get }
     
     /// 请求头设置，默认为 `nil`
-    var headers: HTTPHeaders? { get }
+    var headerFields: HTTPHeaders? { get }
     
     /// 校验类型，校验返回的status code 是否为正确的值，默认校验正确和重定向code
     var validationType: ValidationType { get }
@@ -50,6 +50,11 @@ public protocol Requestable: RequestValidator, RequestInterceptor {
     /// - Returns: 修改后的`URLRequest`
     func intercept(request: URLRequest) throws -> URLRequest
     
+    /// 生成一个可用的URLRequest
+    ///
+    /// - Returns: 网络请求使用的URLRequest
+    /// - Throws: 自定义错误
+    func urlRequest() throws -> URLRequest
 }
 
 // MARK: - Defaults
@@ -73,6 +78,35 @@ extension Requestable {
     
     public func intercept(request: URLRequest) throws -> URLRequest {
         return request
+    }
+}
+
+// MARK: - URLRequest
+extension Requestable {
+    
+    func urlRequest(with paramInterceptor: ((Parameters?) -> (Parameters?))) throws -> URLRequest {
+        
+        guard let url = URL(string: path, relativeTo: service.url) else {
+            throw HTTPError.invalidUrl(service: service.baseUrl,
+                                       path: path)
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.rawValue
+        
+        headerFields?.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
+        
+        var encoding: ParameterEncoding
+        switch formatter {
+        case .json:
+            encoding = JSONEncoding.default
+        case .url:
+            encoding = URLEncoding.default
+        }
+        var params = try intercept(paramters: parameters)
+        params = paramInterceptor(params)
+        urlRequest = try encoding.encode(urlRequest, with: params)
+        return try intercept(request: urlRequest)
     }
 }
 

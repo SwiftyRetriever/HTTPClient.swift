@@ -51,7 +51,6 @@
 		4DCA583821C13F3300576C43 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583321C13F1C00576C43 /* Alamofire.framework */; };
 		4DCA583921C13F3300576C43 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583121C13F1C00576C43 /* HandyJSON.framework */; };
 		4DCA583A21C13F3300576C43 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583221C13F1C00576C43 /* Result.framework */; };
-		4DD39B9A21C4B6CE005F8EF1 /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD39B9921C4B6CE005F8EF1 /* Constructor.swift */; };
 		4DD3C11821D35D69004BC528 /* Configration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3C11721D35D69004BC528 /* Configration.swift */; };
 /* End PBXBuildFile section */
 
@@ -146,7 +145,6 @@
 		4DCA583121C13F1C00576C43 /* HandyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HandyJSON.framework; path = Carthage/Build/iOS/HandyJSON.framework; sourceTree = "<group>"; };
 		4DCA583221C13F1C00576C43 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		4DCA583321C13F1C00576C43 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		4DD39B9921C4B6CE005F8EF1 /* Constructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructor.swift; sourceTree = "<group>"; };
 		4DD3C11721D35D69004BC528 /* Configration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,13 +259,14 @@
 		4DCA57D221C1384A00576C43 /* HTTPClient */ = {
 			isa = PBXGroup;
 			children = (
+				4DD3C11A21D36AE2004BC528 /* New Group1 */,
+				4DD3C11921D36ADE004BC528 /* New Group */,
 				4DCA57D321C1384A00576C43 /* HTTPClient.h */,
 				4DCA57D421C1384A00576C43 /* Info.plist */,
 				4DD3C11721D35D69004BC528 /* Configration.swift */,
 				4DCA57EC21C139DD00576C43 /* Serviceable.swift */,
 				4DCA57F021C13A2500576C43 /* Requestable.swift */,
 				4DCA57EE21C13A1800576C43 /* ValidationType.swift */,
-				4DD39B9921C4B6CE005F8EF1 /* Constructor.swift */,
 				4DCA57F421C13A8B00576C43 /* MultipartFormData.swift */,
 				4DCA57FC21C13AC100576C43 /* HTTPTask.swift */,
 				4DCA57FE21C13AEC00576C43 /* HTTPError.swift */,
@@ -321,6 +320,20 @@
 				4DCA583221C13F1C00576C43 /* Result.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4DD3C11921D36ADE004BC528 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		4DD3C11A21D36AE2004BC528 /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group1";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -594,7 +607,6 @@
 				4DCA580921C13BA600576C43 /* Model.swift in Sources */,
 				4DCA57FD21C13AC100576C43 /* HTTPTask.swift in Sources */,
 				4DCA57ED21C139DD00576C43 /* Serviceable.swift in Sources */,
-				4DD39B9A21C4B6CE005F8EF1 /* Constructor.swift in Sources */,
 				4DCA580121C13AF900576C43 /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

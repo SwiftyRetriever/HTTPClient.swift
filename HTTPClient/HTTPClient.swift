@@ -129,44 +129,37 @@ public final class HTTPClient<R: Requestable>: Client {
                      progressHandler: ProgressHandler?,
                      completionHandler: @escaping (CompletionHandler)) -> Task? {
         
-        var urlRequest: URLRequest?
+        let urlRequest: URLRequest
         do {
-            let parameters = try request.intercept(paramters: request.parameters)
-            let constructor = CommonConstructor(service: request.service,
-                                                path: request.path,
-                                                method: request.method,
-                                                headerFields: request.headers,
-                                                parameters: parameters,
-                                                formatter: request.formatter)
-            urlRequest = try constructor.urlRequest()
-            urlRequest = try request.intercept(request: urlRequest!)
+            let paramInterceptor = { parameters -> (Parameters?) in
+                return parameters
+            }
+            urlRequest = try request.urlRequest(with: paramInterceptor)
         } catch let error as HTTPError {
             completionHandler(.failure(error))
+            return nil
         } catch let error {
             let err = HTTPError.request(service: request.service.baseUrl, path: request.path, error: error)
             completionHandler(.failure(err))
-        }
-        
-        guard let finalRequest = urlRequest else {
             return nil
         }
         
         var initalRequest: Request?
         switch requestType {
         case .data:
-            initalRequest = manager.request(finalRequest)
+            initalRequest = manager.request(urlRequest)
             break
         case .download(let destination):
-            initalRequest = manager.download(finalRequest, to: destination)
+            initalRequest = manager.download(urlRequest, to: destination)
             break
         case .uploadFile(let fileURL):
-            initalRequest = manager.upload(fileURL, with: finalRequest)
+            initalRequest = manager.upload(fileURL, with: urlRequest)
             break
         case .uploadFormData(let mutipartFormData):
             let multipartFormData: (AFMultipartFormData) -> Void = { formData in
                 formData.applyMoyaMultipartFormData(mutipartFormData)
             }
-            manager.upload(multipartFormData: multipartFormData, with: finalRequest, queue: queue) { result in
+            manager.upload(multipartFormData: multipartFormData, with: urlRequest, queue: queue) { result in
                 switch result {
                 case .success(let uploadRequest, _, _):
                     initalRequest = uploadRequest
