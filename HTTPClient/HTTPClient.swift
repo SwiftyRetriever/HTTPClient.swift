@@ -18,6 +18,17 @@ public final class HTTPClient<R: Requestable>: Client {
         self.manager = manager
     }
     
+    /// 构建默认的Alamofire.SessionManager
+    public class func defaultAlamofireManager() -> SessionManager {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        configuration.timeoutIntervalForRequest = 20.0
+        configuration.timeoutIntervalForResource = 20.0
+        let manager = SessionManager(configuration: configuration)
+        manager.startRequestsImmediately = false
+        return manager
+    }
+    
     /// 发送一个Alamofire.DataRequest
     ///
     /// - Parameters:
@@ -170,6 +181,35 @@ public final class HTTPClient<R: Requestable>: Client {
 //        sendAlamofireRequest(initalRequest!, request: request, queue: queue, progressHandler: progressHandler, completionHandler: completionHandler)
         
         return nil
+    }
+    
+    
+    /// 发起网络请求
+    ///
+    /// - Parameters:
+    ///   - request: Requestable
+    ///   - alamofireRequest: Alamofire.Request
+    ///   - callbackQueue: 回调线程
+    ///   - completionHandler: 完成回调
+    /// - Returns: 请求任务
+    func sendAlamofireRequest<AF>(_ alamofireRequest: AF,
+                                  request: R,
+                                  queue: DispatchQueue?,
+                                  progressHandler: ProgressHandler?,
+                                  completionHandler: @escaping CompletionHandler)
+        -> Task where AF: RequestAlterative , AF: Request {
+            
+            let statusCodes = request.validationType.statusCodes
+            var progressAlamofireRequest = statusCodes.isEmpty ? alamofireRequest : alamofireRequest.validate(statusCode: statusCodes)
+            
+            if progressHandler != nil {
+                progressAlamofireRequest = alamofireRequest.progress(queue: queue, progressHandler: progressHandler!)
+            }
+            
+            progressAlamofireRequest = progressAlamofireRequest.response(queue: queue, completionHandler: completionHandler)
+            progressAlamofireRequest.resume()
+            
+            return HTTPTask(progressAlamofireRequest)
     }
     
 }

@@ -33,7 +33,6 @@
 		4DCA57FD21C13AC100576C43 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57FC21C13AC100576C43 /* HTTPTask.swift */; };
 		4DCA57FF21C13AEC00576C43 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57FE21C13AEC00576C43 /* HTTPError.swift */; };
 		4DCA580121C13AF900576C43 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580021C13AF900576C43 /* Client.swift */; };
-		4DCA580321C13B7100576C43 /* HTTPClient+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580221C13B7100576C43 /* HTTPClient+Internal.swift */; };
 		4DCA580521C13B8600576C43 /* RequestAlterative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580421C13B8600576C43 /* RequestAlterative.swift */; };
 		4DCA580721C13B9400576C43 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580621C13B9400576C43 /* Response.swift */; };
 		4DCA580921C13BA600576C43 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580821C13BA600576C43 /* Model.swift */; };
@@ -130,7 +129,6 @@
 		4DCA57FC21C13AC100576C43 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
 		4DCA57FE21C13AEC00576C43 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		4DCA580021C13AF900576C43 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
-		4DCA580221C13B7100576C43 /* HTTPClient+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPClient+Internal.swift"; sourceTree = "<group>"; };
 		4DCA580421C13B8600576C43 /* RequestAlterative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAlterative.swift; sourceTree = "<group>"; };
 		4DCA580621C13B9400576C43 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		4DCA580821C13BA600576C43 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 				4DCA57FE21C13AEC00576C43 /* HTTPError.swift */,
 				4DCA580021C13AF900576C43 /* Client.swift */,
 				4DCA57EA21C139CE00576C43 /* HTTPClient.swift */,
-				4DCA580221C13B7100576C43 /* HTTPClient+Internal.swift */,
 				4DCA580421C13B8600576C43 /* RequestAlterative.swift */,
 				4DCA580621C13B9400576C43 /* Response.swift */,
 				4DCA580821C13BA600576C43 /* Model.swift */,
@@ -596,7 +593,6 @@
 				4DCA580721C13B9400576C43 /* Response.swift in Sources */,
 				4DCA580921C13BA600576C43 /* Model.swift in Sources */,
 				4DCA57FD21C13AC100576C43 /* HTTPTask.swift in Sources */,
-				4DCA580321C13B7100576C43 /* HTTPClient+Internal.swift in Sources */,
 				4DCA57ED21C139DD00576C43 /* Serviceable.swift in Sources */,
 				4DD39B9A21C4B6CE005F8EF1 /* Constructor.swift in Sources */,
 				4DCA580121C13AF900576C43 /* Client.swift in Sources */,
