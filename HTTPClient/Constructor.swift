@@ -34,12 +34,12 @@ extension Constructor {
         
         headerFields?.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
         
-        var encoding: AFParameterEncoding
+        var encoding: ParameterEncoding
         switch formatter {
         case .json:
-            encoding = AFJSONEncoding.default
+            encoding = JSONEncoding.default
         case .url:
-            encoding = AFURLEncoding.default
+            encoding = URLEncoding.default
         }
         
         urlRequest = try encoding.encode(urlRequest, with: parameters)

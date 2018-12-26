@@ -6,27 +6,18 @@
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
-public enum TransformerError: Error {
-    case statusCode
-    case emptyResponse
-    case server(code: Int, message: String?)
-    case business(code: Int, message: String?)
-    case modelDeficiency
-    case invalidResponseBody
-}
-
 /** 基本返回数据模型
  ```
  {
- code:200,
- description: "请求成功"
- model: {
- success: "0",
- respMsg: "请求业务类型正确"
- ...
- 其他参数
- ····
- }
+    code:200,
+    description: "请求成功"
+    model: {
+        success: "0",
+        respMsg: "请求业务类型正确"
+        ...
+        其他参数
+        ····
+    }
  }
  ```
  */
@@ -101,6 +92,15 @@ public final class CommonTransformer: Transformer {
 }
 
 // MARK: - ResponseError
+
+public enum TransformerError: Error {
+    case statusCode
+    case emptyResponse
+    case server(code: Int, message: String?)
+    case business(code: Int, message: String?)
+    case modelDeficiency
+    case invalidResponseBody
+}
 
 extension TransformerError: LocalizedError {
     

@@ -6,19 +6,6 @@
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
-/// 网络请求头
-public typealias HTTPHeaders = [String: String]
-
-/// 网络请求参数
-public typealias Parameters = [String: Any]
-
-/// 参数格式化类型，根据格式化类型选取`Alamofire`的`ParameterEncoding`
-public enum ParameterFormatter {
-    case url
-    case json
-    /** case xml 暂时不需要支持`xml`格式 */
-}
-
 public protocol Requestable: RequestValidator, RequestInterceptor {
     
     /// 服务类型

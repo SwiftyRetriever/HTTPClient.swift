@@ -8,20 +8,13 @@
 
 public struct MultipartFormData {
     
-    public enum FormDataType {
+    public enum MultipartFormDataType {
         case data(Foundation.Data)
         case file(URL)
         case stream(InputStream, UInt64)
     }
     
-    public init(_ formDataType: FormDataType, name: String, fileName: String? = nil, mimeType: String? = nil) {
-        self.formDataType = formDataType
-        self.name = name
-        self.fileName = fileName
-        self.mimeType = mimeType
-    }
-    
-    public let formDataType: FormDataType
+    public let formDataType: MultipartFormDataType
     
     public let name: String
     
@@ -29,6 +22,12 @@ public struct MultipartFormData {
     
     public let mimeType: String?
     
+    public init(_ formDataType: MultipartFormDataType, name: String, fileName: String? = nil, mimeType: String? = nil) {
+        self.formDataType = formDataType
+        self.name = name
+        self.fileName = fileName
+        self.mimeType = mimeType
+    }
 }
 
 // MARK: Alamofire MultipartFormData

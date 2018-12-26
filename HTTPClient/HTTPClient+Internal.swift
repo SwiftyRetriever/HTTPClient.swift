@@ -5,7 +5,7 @@
 //  Created by 张伟 on 2018/12/12.
 //  Copyright © 2018 zevwings. All rights reserved.
 //
-/*
+
 extension HTTPClient {
     
     /// 构建默认的Alamofire.SessionManager
@@ -17,10 +17,6 @@ extension HTTPClient {
         let manager = SessionManager(configuration: configuration)
         manager.startRequestsImmediately = false
         return manager
-    }
-    
-    public final class func defaultRequestConstructor<R>(_ request: R) -> URLRequest? where R: Requestable {
-        return nil
     }
     
     /// 发起网络请求
@@ -68,5 +64,3 @@ extension HTTPClient {
     }
 
 }
-
-*/

@@ -40,7 +40,7 @@ protocol AFRequestAlterative {
 
 extension AFRequestAlterative {
     
-    private func transformResponseToResult(_ response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Error?, timeline: AFTimeline? ) -> Result<Response, HTTPError> {
+    private func transformResponseToResult(_ response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Error?, timeline: Timeline? ) -> Result<Response, HTTPError> {
         switch (response, error) {
         case let (.some(response), .none):
             let result = Response(statusCode: response.statusCode, data: data, request: request, response: response, timeline: timeline)
@@ -63,7 +63,7 @@ extension AFRequestAlterative {
     }
 }
 
-extension AFRequestAlterative where Self: AFDataRequest {
+extension AFRequestAlterative where Self: DataRequest {
     
     /// 格式化网络请求进度回调
     ///
@@ -97,7 +97,7 @@ extension AFRequestAlterative where Self: AFDataRequest {
     }
 }
 
-extension AFRequestAlterative where Self: AFUploadRequest {
+extension AFRequestAlterative where Self: UploadRequest {
     
     /// 格式化网络请求进度回调
     ///
@@ -113,7 +113,7 @@ extension AFRequestAlterative where Self: AFUploadRequest {
     }
 }
 
-extension AFRequestAlterative where Self: AFDownloadRequest {
+extension AFRequestAlterative where Self: DownloadRequest {
     
     /// 格式化网络请求进度回调
     ///
@@ -146,6 +146,6 @@ extension AFRequestAlterative where Self: AFDownloadRequest {
     }
 }
 
-extension AFDataRequest: AFRequestAlterative {}
-extension AFDownloadRequest: AFRequestAlterative {}
+extension DataRequest: AFRequestAlterative {}
+extension DownloadRequest: AFRequestAlterative {}
 

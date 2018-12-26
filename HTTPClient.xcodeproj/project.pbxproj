@@ -29,7 +29,6 @@
 		4DCA57ED21C139DD00576C43 /* Serviceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57EC21C139DD00576C43 /* Serviceable.swift */; };
 		4DCA57EF21C13A1800576C43 /* ValidationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57EE21C13A1800576C43 /* ValidationType.swift */; };
 		4DCA57F121C13A2500576C43 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57F021C13A2500576C43 /* Requestable.swift */; };
-		4DCA57F321C13A7D00576C43 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57F221C13A7D00576C43 /* Builder.swift */; };
 		4DCA57F521C13A8B00576C43 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57F421C13A8B00576C43 /* MultipartFormData.swift */; };
 		4DCA57F721C13AA600576C43 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57F621C13AA600576C43 /* Task.swift */; };
 		4DCA57FD21C13AC100576C43 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57FC21C13AC100576C43 /* HTTPTask.swift */; };
@@ -55,6 +54,7 @@
 		4DCA583921C13F3300576C43 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583121C13F1C00576C43 /* HandyJSON.framework */; };
 		4DCA583A21C13F3300576C43 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583221C13F1C00576C43 /* Result.framework */; };
 		4DD39B9A21C4B6CE005F8EF1 /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD39B9921C4B6CE005F8EF1 /* Constructor.swift */; };
+		4DD3C11821D35D69004BC528 /* Configration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3C11721D35D69004BC528 /* Configration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,7 +127,6 @@
 		4DCA57EC21C139DD00576C43 /* Serviceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serviceable.swift; sourceTree = "<group>"; };
 		4DCA57EE21C13A1800576C43 /* ValidationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationType.swift; sourceTree = "<group>"; };
 		4DCA57F021C13A2500576C43 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
-		4DCA57F221C13A7D00576C43 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		4DCA57F421C13A8B00576C43 /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
 		4DCA57F621C13AA600576C43 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		4DCA57FC21C13AC100576C43 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
@@ -152,6 +151,7 @@
 		4DCA583221C13F1C00576C43 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		4DCA583321C13F1C00576C43 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		4DD39B9921C4B6CE005F8EF1 /* Constructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructor.swift; sourceTree = "<group>"; };
+		4DD3C11721D35D69004BC528 /* Configration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,10 +267,10 @@
 			children = (
 				4DCA57D321C1384A00576C43 /* HTTPClient.h */,
 				4DCA57D421C1384A00576C43 /* Info.plist */,
+				4DD3C11721D35D69004BC528 /* Configration.swift */,
 				4DCA57EC21C139DD00576C43 /* Serviceable.swift */,
-				4DCA57EE21C13A1800576C43 /* ValidationType.swift */,
 				4DCA57F021C13A2500576C43 /* Requestable.swift */,
-				4DCA57F221C13A7D00576C43 /* Builder.swift */,
+				4DCA57EE21C13A1800576C43 /* ValidationType.swift */,
 				4DD39B9921C4B6CE005F8EF1 /* Constructor.swift */,
 				4DCA57F421C13A8B00576C43 /* MultipartFormData.swift */,
 				4DCA57F621C13AA600576C43 /* Task.swift */,
@@ -586,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DD3C11821D35D69004BC528 /* Configration.swift in Sources */,
 				4DCA580B21C13BB300576C43 /* Transformer.swift in Sources */,
 				4DCA57F521C13A8B00576C43 /* MultipartFormData.swift in Sources */,
 				4D054AE821C3F16700688207 /* PluginType.swift in Sources */,
@@ -603,7 +604,6 @@
 				4DD39B9A21C4B6CE005F8EF1 /* Constructor.swift in Sources */,
 				4DCA57F721C13AA600576C43 /* Task.swift in Sources */,
 				4DCA580121C13AF900576C43 /* Client.swift in Sources */,
-				4DCA57F321C13A7D00576C43 /* Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
