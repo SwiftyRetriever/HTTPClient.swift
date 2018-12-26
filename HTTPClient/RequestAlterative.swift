@@ -12,7 +12,7 @@ public typealias ProgressHandler = (Progress) -> Void
 public typealias CompletionHandler = (Result<Response, HTTPError>) -> Void
 
 /// 格式化Alamofire网络请求，添加网络请求统一返回格式
-protocol AFRequestAlterative {
+protocol RequestAlterative {
     
     /// 格式化网络请求进度回调
     ///
@@ -38,7 +38,7 @@ protocol AFRequestAlterative {
 
 }
 
-extension AFRequestAlterative {
+extension RequestAlterative {
     
     private func transformResponseToResult(_ response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Error?, timeline: Timeline? ) -> Result<Response, HTTPError> {
         switch (response, error) {
@@ -63,7 +63,7 @@ extension AFRequestAlterative {
     }
 }
 
-extension AFRequestAlterative where Self: DataRequest {
+extension RequestAlterative where Self: DataRequest {
     
     /// 格式化网络请求进度回调
     ///
@@ -97,7 +97,7 @@ extension AFRequestAlterative where Self: DataRequest {
     }
 }
 
-extension AFRequestAlterative where Self: UploadRequest {
+extension RequestAlterative where Self: UploadRequest {
     
     /// 格式化网络请求进度回调
     ///
@@ -113,7 +113,7 @@ extension AFRequestAlterative where Self: UploadRequest {
     }
 }
 
-extension AFRequestAlterative where Self: DownloadRequest {
+extension RequestAlterative where Self: DownloadRequest {
     
     /// 格式化网络请求进度回调
     ///
@@ -146,6 +146,6 @@ extension AFRequestAlterative where Self: DownloadRequest {
     }
 }
 
-extension DataRequest: AFRequestAlterative {}
-extension DownloadRequest: AFRequestAlterative {}
+extension DataRequest: RequestAlterative {}
+extension DownloadRequest: RequestAlterative {}
 

@@ -8,6 +8,7 @@
 
 import Alamofire
 
+// Public
 public typealias HTTPMethod = Alamofire.HTTPMethod
 public typealias SessionManager = Alamofire.SessionManager
 public typealias Timeline = Alamofire.Timeline
@@ -24,7 +25,6 @@ internal typealias AFMultipartFormData = Alamofire.MultipartFormData
 internal typealias ParameterEncoding = Alamofire.ParameterEncoding
 internal typealias JSONEncoding = Alamofire.JSONEncoding
 internal typealias URLEncoding = Alamofire.URLEncoding
-
 
 /// 网络请求头
 public typealias HTTPHeaders = [String: String]

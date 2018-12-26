@@ -6,6 +6,21 @@
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
+public protocol Task {
+    
+    /// 任务是否取消
+    var isCancelled: Bool { get }
+    
+    /// 启动/恢复任务
+    func resume()
+    
+    /// 暂停任务
+    func suspend()
+    
+    /// 取消任务
+    func cancel()
+}
+
 public final class HTTPTask: Task {
     
     public typealias CancelAction = () -> ()
