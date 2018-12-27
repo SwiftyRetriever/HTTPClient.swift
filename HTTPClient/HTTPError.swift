@@ -13,8 +13,8 @@ public enum HTTPError: Error {
     case invalidParameters(service: String, path: String, paramters: Parameters?, error: Error)
     
     case request(service: String, path: String, error: Error)
-    
-    case upload(service: String, path: String, error: Swift.Error)
+
+    case upload(service: String, path: String, error: Swift.Error?)
     
     case emptyResponse(request: URLRequest?, response: HTTPURLResponse?)
     

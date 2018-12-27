@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D054AE821C3F16700688207 /* PluginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D054AE721C3F16700688207 /* PluginType.swift */; };
+		4D054AE821C3F16700688207 /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D054AE721C3F16700688207 /* Plugins.swift */; };
 		4D0D882321D22D2000914EDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0D882221D22D2000914EDC /* AppDelegate.swift */; };
 		4D0D882521D22D2000914EDC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0D882421D22D2000914EDC /* ViewController.swift */; };
 		4D0D882821D22D2000914EDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D0D882621D22D2000914EDC /* Main.storyboard */; };
@@ -104,7 +104,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4D054AE721C3F16700688207 /* PluginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginType.swift; sourceTree = "<group>"; };
+		4D054AE721C3F16700688207 /* Plugins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugins.swift; sourceTree = "<group>"; };
 		4D0D882021D22D1F00914EDC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0D882221D22D2000914EDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D0D882421D22D2000914EDC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -261,12 +261,12 @@
 		4DCA57D221C1384A00576C43 /* HTTPClient */ = {
 			isa = PBXGroup;
 			children = (
+				4DCA57D321C1384A00576C43 /* HTTPClient.h */,
 				4DCA57FE21C13AEC00576C43 /* HTTPError.swift */,
 				4DD3C11921D36ADE004BC528 /* Service */,
 				4DD3C11A21D36AE2004BC528 /* Requestable */,
 				4DD3C12021D377D8004BC528 /* Client */,
 				4DD3C12121D377EB004BC528 /* Response */,
-				4DCA57D321C1384A00576C43 /* HTTPClient.h */,
 				4DCA57D421C1384A00576C43 /* Info.plist */,
 			);
 			path = HTTPClient;
@@ -334,7 +334,7 @@
 		4DD3C12021D377D8004BC528 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				4D054AE721C3F16700688207 /* PluginType.swift */,
+				4D054AE721C3F16700688207 /* Plugins.swift */,
 				4DCA57F421C13A8B00576C43 /* MultipartFormData.swift */,
 				4DCA57FC21C13AC100576C43 /* HTTPTask.swift */,
 				4DCA580021C13AF900576C43 /* Client.swift */,
@@ -615,7 +615,7 @@
 				4DCA580B21C13BB300576C43 /* Transformer.swift in Sources */,
 				4DCA57F521C13A8B00576C43 /* MultipartFormData.swift in Sources */,
 				4DD3C11C21D3771F004BC528 /* RequestableInterceptor.swift in Sources */,
-				4D054AE821C3F16700688207 /* PluginType.swift in Sources */,
+				4D054AE821C3F16700688207 /* Plugins.swift in Sources */,
 				4DCA580521C13B8600576C43 /* RequestAlterative.swift in Sources */,
 				4DCA57FF21C13AEC00576C43 /* HTTPError.swift in Sources */,
 				4DCA57EB21C139CE00576C43 /* HTTPClient.swift in Sources */,

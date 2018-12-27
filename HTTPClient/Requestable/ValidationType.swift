@@ -8,9 +8,13 @@
 
 public enum ValidationType {
     
+    // 不做校验
     case none
+    // 校验数据，成功code为2xx
     case successCodes
+    // 校验数据，成功code为2xx和3xx
     case successAndRedirectCodes
+    // 自定义校验成功Code
     case customCodes([Int])
     
     var statusCodes: [Int] {

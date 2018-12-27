@@ -27,8 +27,6 @@ internal typealias ParameterEncoding = Alamofire.ParameterEncoding
 internal typealias JSONEncoding = Alamofire.JSONEncoding
 internal typealias URLEncoding = Alamofire.URLEncoding
 
-
-
 public enum RequestType {
     case data
     case download(destination: Destination?)
