@@ -16,7 +16,7 @@ public final class Response: Equatable {
     
     public let response: HTTPURLResponse?
     
-    public let timeline: Timeline?
+    private let timeline: Timeline?
     
     public init(statusCode: Int, data: Data?, request: URLRequest?, response: HTTPURLResponse?, timeline: Timeline?) {
         self.statusCode = statusCode

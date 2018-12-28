@@ -4,7 +4,6 @@
 //
 //  Created by 张伟 on 2018/12/12.
 //  Copyright © 2018 zevwings. All rights reserved.
-//
 
 import Result
 

@@ -51,6 +51,7 @@
 		4DCA583821C13F3300576C43 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583321C13F1C00576C43 /* Alamofire.framework */; };
 		4DCA583921C13F3300576C43 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583121C13F1C00576C43 /* HandyJSON.framework */; };
 		4DCA583A21C13F3300576C43 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583221C13F1C00576C43 /* Result.framework */; };
+		4DCD090D21D60DE300F49293 /* ModelResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD090C21D60DE300F49293 /* ModelResponseSerializer.swift */; };
 		4DD1F63021D4840400138207 /* HTTPClient+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1F62F21D4840400138207 /* HTTPClient+Internal.swift */; };
 		4DD3C11C21D3771F004BC528 /* RequestableInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3C11B21D3771F004BC528 /* RequestableInterceptor.swift */; };
 		4DD3C11E21D3772B004BC528 /* RequestableValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD3C11D21D3772B004BC528 /* RequestableValidator.swift */; };
@@ -147,6 +148,7 @@
 		4DCA583121C13F1C00576C43 /* HandyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HandyJSON.framework; path = Carthage/Build/iOS/HandyJSON.framework; sourceTree = "<group>"; };
 		4DCA583221C13F1C00576C43 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		4DCA583321C13F1C00576C43 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		4DCD090C21D60DE300F49293 /* ModelResponseSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelResponseSerializer.swift; sourceTree = "<group>"; };
 		4DD1F62F21D4840400138207 /* HTTPClient+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPClient+Internal.swift"; sourceTree = "<group>"; };
 		4DD3C11B21D3771F004BC528 /* RequestableInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestableInterceptor.swift; sourceTree = "<group>"; };
 		4DD3C11D21D3772B004BC528 /* RequestableValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestableValidator.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				4DCA580821C13BA600576C43 /* Model.swift */,
 				4DCA580A21C13BB300576C43 /* Transformer.swift */,
 				4DCA580C21C13BC400576C43 /* CommonTransformer.swift */,
+				4DCD090C21D60DE300F49293 /* ModelResponseSerializer.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				4DD1F63021D4840400138207 /* HTTPClient+Internal.swift in Sources */,
 				4DCA580721C13B9400576C43 /* Response.swift in Sources */,
 				4DCA580921C13BA600576C43 /* Model.swift in Sources */,
+				4DCD090D21D60DE300F49293 /* ModelResponseSerializer.swift in Sources */,
 				4DCA57FD21C13AC100576C43 /* Task.swift in Sources */,
 				4DCA57ED21C139DD00576C43 /* Serviceable.swift in Sources */,
 				4DCA580121C13AF900576C43 /* Client.swift in Sources */,

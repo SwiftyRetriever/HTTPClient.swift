@@ -14,16 +14,22 @@ public typealias Timeline = Alamofire.Timeline
 public typealias Destination = Alamofire.DownloadRequest.DownloadFileDestination
 
 // Request
-internal typealias Request = Alamofire.Request
-internal typealias DataRequest = Alamofire.DataRequest
-internal typealias UploadRequest = Alamofire.UploadRequest
-internal typealias DownloadRequest = Alamofire.DownloadRequest
+internal typealias AFRequest = Alamofire.Request
+internal typealias AFDataRequest = Alamofire.DataRequest
+internal typealias AFUploadRequest = Alamofire.UploadRequest
+internal typealias AFDownloadRequest = Alamofire.DownloadRequest
 internal typealias AFMultipartFormData = Alamofire.MultipartFormData
 
+// Result
+internal typealias AFResult = Alamofire.Result
+//internal typealias AFResponseSerializer = Alamofire.ResponseSerializer
+internal typealias AFDataResponseSerializerProtocol = Alamofire.DataResponseSerializerProtocol
+internal typealias AFDownloadResponseSerializerProtocol = Alamofire.DownloadResponseSerializerProtocol
+
 // ParameterEncoding
-internal typealias ParameterEncoding = Alamofire.ParameterEncoding
-internal typealias JSONEncoding = Alamofire.JSONEncoding
-internal typealias URLEncoding = Alamofire.URLEncoding
+internal typealias AFParameterEncoding = Alamofire.ParameterEncoding
+internal typealias AFJSONEncoding = Alamofire.JSONEncoding
+internal typealias AFURLEncoding = Alamofire.URLEncoding
 
 protocol AlamofireRequest {
     
@@ -46,25 +52,12 @@ protocol AlamofireRequest {
     func cancel()
     
     /// 格式化网络请求进度回调
-    ///
-    /// - Parameters:
-    ///   - queue: 回调线程
-    ///   - progressHandler: 进度回调
-    /// - Returns: Request
     func progress(queue: DispatchQueue?, progressHandler: @escaping ProgressHandler) -> Self
     
     /// 格式化网络请求回调内容
-    ///
-    /// - Parameters:
-    ///   - queue: 回调线程
-    ///   - completionHandler: 结果回调
-    /// - Returns: Request
     func response(queue: DispatchQueue?, completionHandler: @escaping CompletionHandler) -> Self
     
     /// 格式化网络请求返回Code验证
-    ///
-    /// - Parameter acceptableStatusCodes: 验证序列
-    /// - Returns: Request
     func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Sequence, S.Element == Int
 
 }
@@ -90,14 +83,14 @@ extension AlamofireRequest where Self: DataRequest {
     ///   - completionHandler: 结果回调
     /// - Returns: Request
     func response(queue: DispatchQueue?, completionHandler: @escaping CompletionHandler) -> Self {
-        return response(queue: queue, completionHandler: { handler in
-            
-            //            let result = self.transformResponseToResult(handler.response,
-            //                                                        request: handler.request,
-            //                                                        data: handler.data,
-            //                                                        error: handler.error,
-            //                                                        timeline: handler.timeline)
-            //            completionHandler(result)
+        let serilizer = DataResponseSerializer<None>.serialize(with: "")
+        return response(queue: queue, responseSerializer: serilizer, completionHandler: { response in
+            switch response.result {
+            case .success(let value):
+                break
+            case .failure(let error):
+                break
+            }
         })
     }
 }
@@ -139,14 +132,15 @@ extension AlamofireRequest where Self: DownloadRequest {
     ///   - completionHandler: 结果回调
     /// - Returns: Request
     func response(queue: DispatchQueue?, completionHandler: @escaping CompletionHandler) -> Self {
-
-        return response(queue: queue, completionHandler: { handler in
-//            let result = self.transformResponseToResult(handler.response,
-//                                                        request: handler.request,
-//                                                        data: handler.resumeData,
-//                                                        error: handler.error,
-//                                                        timeline: handler.timeline)
-//            completionHandler(result)
+        
+        let serilizer = DownloadResponseSerializer<None>.serialize(with: "")
+        return response(queue: queue, responseSerializer: serilizer, completionHandler: { response in
+            switch response.result {
+            case .success(let value):
+                break
+            case .failure(let error):
+                break
+            }
         })
     }
 }

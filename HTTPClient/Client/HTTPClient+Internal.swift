@@ -66,12 +66,12 @@ extension HTTPClient {
         
         request.headerFields?.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
         
-        var encoding: ParameterEncoding
+        var encoding: AFParameterEncoding
         switch request.formatter {
         case .json:
-            encoding = JSONEncoding.default
+            encoding = AFJSONEncoding.default
         case .url:
-            encoding = URLEncoding.default
+            encoding = AFURLEncoding.default
         }
         
         var parameters = request.parameters
@@ -116,7 +116,7 @@ extension HTTPClient {
                 let multipartFormData: (AFMultipartFormData) -> Void = { formData in
                     formData.applyMoyaMultipartFormData(mutipartFormData)
                 }
-                var initalRequest: UploadRequest?
+                var initalRequest: AFUploadRequest?
                 var error: Error?
                 manager.upload(multipartFormData: multipartFormData, with: urlRequest, queue: queue) { result in
                     switch result {
