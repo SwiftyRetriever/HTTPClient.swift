@@ -6,26 +6,10 @@
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
-import Foundation
-import Alamofire
+import Result
 
-// Public
-public typealias HTTPMethod = Alamofire.HTTPMethod
-public typealias SessionManager = Alamofire.SessionManager
-public typealias Timeline = Alamofire.Timeline
-public typealias Destination = Alamofire.DownloadRequest.DownloadFileDestination
-
-// Request
-internal typealias Request = Alamofire.Request
-internal typealias DataRequest = Alamofire.DataRequest
-internal typealias UploadRequest = Alamofire.UploadRequest
-internal typealias DownloadRequest = Alamofire.DownloadRequest
-internal typealias AFMultipartFormData = Alamofire.MultipartFormData
-
-// ParameterEncoding
-internal typealias ParameterEncoding = Alamofire.ParameterEncoding
-internal typealias JSONEncoding = Alamofire.JSONEncoding
-internal typealias URLEncoding = Alamofire.URLEncoding
+public typealias ProgressHandler = (Progress) -> Void
+public typealias CompletionHandler = (Result<Response, HTTPError>) -> Void
 
 public enum RequestType {
     case data

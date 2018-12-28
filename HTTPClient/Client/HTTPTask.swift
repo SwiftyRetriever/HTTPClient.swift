@@ -27,19 +27,19 @@ public final class HTTPTask: Task {
     
     public private(set) var isCancelled: Bool = false
     
-    private let request: Request
+    private let request: AlamofireRequest
     
     private let cancelAction: CancelAction
     
     private var lock: DispatchSemaphore = DispatchSemaphore(value: 1)
     
-    internal convenience init(_ request: Request) {
+    internal convenience init(_ request: AlamofireRequest) {
         self.init(request) {
             request.cancel()
         }
     }
     
-    internal init(_ request: Request, action: @escaping CancelAction) {
+    internal init(_ request: AlamofireRequest, action: @escaping CancelAction) {
         self.request = request
         self.cancelAction = action
     }
@@ -64,11 +64,11 @@ public final class HTTPTask: Task {
 extension HTTPTask: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
-        return request.description
+        return request.request?.description ?? "HTTPTask"
     }
     
     public var debugDescription: String {
-        return request.debugDescription
+        return request.request?.debugDescription ?? "HTTPTask"
     }
 }
 

@@ -6,8 +6,6 @@
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
-import Foundation
-
 // MARK: - RequestableInterceptor
 public protocol RequestableInterceptor {
     

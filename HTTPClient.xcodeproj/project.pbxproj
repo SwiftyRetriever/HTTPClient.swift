@@ -22,6 +22,7 @@
 		4D0D884B21D22D3200914EDC /* HandyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583121C13F1C00576C43 /* HandyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D0D884C21D22D3200914EDC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583221C13F1C00576C43 /* Result.framework */; };
 		4D0D884D21D22D3200914EDC /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA583221C13F1C00576C43 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4DC23C7621D5C79E008C3F18 /* HTTPClient+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC23C7521D5C79E008C3F18 /* HTTPClient+Alamofire.swift */; };
 		4DCA57DA21C1384A00576C43 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCA57D021C1384A00576C43 /* HTTPClient.framework */; };
 		4DCA57DF21C1384A00576C43 /* HTTPClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57DE21C1384A00576C43 /* HTTPClientTests.m */; };
 		4DCA57E121C1384A00576C43 /* HTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DCA57D321C1384A00576C43 /* HTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,7 +34,6 @@
 		4DCA57FD21C13AC100576C43 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57FC21C13AC100576C43 /* HTTPTask.swift */; };
 		4DCA57FF21C13AEC00576C43 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57FE21C13AEC00576C43 /* HTTPError.swift */; };
 		4DCA580121C13AF900576C43 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580021C13AF900576C43 /* Client.swift */; };
-		4DCA580521C13B8600576C43 /* RequestAlterative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580421C13B8600576C43 /* RequestAlterative.swift */; };
 		4DCA580721C13B9400576C43 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580621C13B9400576C43 /* Response.swift */; };
 		4DCA580921C13BA600576C43 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580821C13BA600576C43 /* Model.swift */; };
 		4DCA580B21C13BB300576C43 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580A21C13BB300576C43 /* Transformer.swift */; };
@@ -116,6 +116,7 @@
 		4D0D883321D22D2000914EDC /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0D883721D22D2100914EDC /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		4D0D883921D22D2100914EDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DC23C7521D5C79E008C3F18 /* HTTPClient+Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPClient+Alamofire.swift"; sourceTree = "<group>"; };
 		4DCA57D021C1384A00576C43 /* HTTPClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTTPClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DCA57D321C1384A00576C43 /* HTTPClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPClient.h; sourceTree = "<group>"; };
 		4DCA57D421C1384A00576C43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 		4DCA57FC21C13AC100576C43 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
 		4DCA57FE21C13AEC00576C43 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		4DCA580021C13AF900576C43 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
-		4DCA580421C13B8600576C43 /* RequestAlterative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAlterative.swift; sourceTree = "<group>"; };
 		4DCA580621C13B9400576C43 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		4DCA580821C13BA600576C43 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		4DCA580A21C13BB300576C43 /* Transformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformer.swift; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 				4DCA580021C13AF900576C43 /* Client.swift */,
 				4DCA57EA21C139CE00576C43 /* HTTPClient.swift */,
 				4DD1F62F21D4840400138207 /* HTTPClient+Internal.swift */,
-				4DCA580421C13B8600576C43 /* RequestAlterative.swift */,
+				4DC23C7521D5C79E008C3F18 /* HTTPClient+Alamofire.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -619,13 +619,13 @@
 				4DCA57F521C13A8B00576C43 /* MultipartFormData.swift in Sources */,
 				4DD3C11C21D3771F004BC528 /* RequestableInterceptor.swift in Sources */,
 				4D054AE821C3F16700688207 /* Plugins.swift in Sources */,
-				4DCA580521C13B8600576C43 /* RequestAlterative.swift in Sources */,
 				4DCA57FF21C13AEC00576C43 /* HTTPError.swift in Sources */,
 				4DCA57EB21C139CE00576C43 /* HTTPClient.swift in Sources */,
 				4DCA57F121C13A2500576C43 /* Requestable.swift in Sources */,
 				4DCA580D21C13BC400576C43 /* CommonTransformer.swift in Sources */,
 				4DD3C11E21D3772B004BC528 /* RequestableValidator.swift in Sources */,
 				4DCA57EF21C13A1800576C43 /* ValidationType.swift in Sources */,
+				4DC23C7621D5C79E008C3F18 /* HTTPClient+Alamofire.swift in Sources */,
 				4DD1F63021D4840400138207 /* HTTPClient+Internal.swift in Sources */,
 				4DCA580721C13B9400576C43 /* Response.swift in Sources */,
 				4DCA580921C13BA600576C43 /* Model.swift in Sources */,

@@ -1,18 +1,49 @@
 //
-//  AFRequestAlterative.swift
+//  HTTPClient+Alamofire.swift
 //  HTTPClient
 //
-//  Created by 张伟 on 2018/12/12.
+//  Created by zevwings on 2018/12/28.
 //  Copyright © 2018 zevwings. All rights reserved.
 //
+import Alamofire
 
-import Result
+// Public
+public typealias HTTPMethod = Alamofire.HTTPMethod
+public typealias SessionManager = Alamofire.SessionManager
+public typealias Timeline = Alamofire.Timeline
+public typealias Destination = Alamofire.DownloadRequest.DownloadFileDestination
 
-public typealias ProgressHandler = (Progress) -> Void
-public typealias CompletionHandler = (Result<Response, HTTPError>) -> Void
+// Request
+internal typealias Request = Alamofire.Request
+internal typealias DataRequest = Alamofire.DataRequest
+internal typealias UploadRequest = Alamofire.UploadRequest
+internal typealias DownloadRequest = Alamofire.DownloadRequest
+internal typealias AFMultipartFormData = Alamofire.MultipartFormData
 
-/// 格式化Alamofire网络请求，添加网络请求统一返回格式
-protocol RequestAlterative {
+// ParameterEncoding
+internal typealias ParameterEncoding = Alamofire.ParameterEncoding
+internal typealias JSONEncoding = Alamofire.JSONEncoding
+internal typealias URLEncoding = Alamofire.URLEncoding
+
+protocol AlamofireRequest {
+    
+    /// 请求任务
+    var task: URLSessionTask? { get }
+    
+    /// 发送到服务器的请求
+    var request: URLRequest? { get }
+    
+    /// 从服务器接收到的返回数据
+    var response: HTTPURLResponse? { get }
+    
+    /// 开始请求
+    func resume()
+    
+    /// 暂停请求
+    func suspend()
+    
+    /// 取消请求
+    func cancel()
     
     /// 格式化网络请求进度回调
     ///
@@ -38,32 +69,7 @@ protocol RequestAlterative {
 
 }
 
-extension RequestAlterative {
-    
-    private func transformResponseToResult(_ response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Error?, timeline: Timeline? ) -> Result<Response, HTTPError> {
-        switch (response, error) {
-        case let (.some(response), .none):
-            let result = Response(statusCode: response.statusCode, data: data, request: request, response: response, timeline: timeline)
-            return .success(result)
-        case let ( _, .some(error)):
-            switch error._code {
-            case NSURLErrorTimedOut:
-                return .failure(HTTPError.timeout(request: request, response: response))
-            case NSURLErrorNetworkConnectionLost:
-                return .failure(HTTPError.connectionLost(request: request, response: response))
-            default:
-                let error = HTTPError.underlying(error, request: request, response: response)
-                return .failure(error)
-            }
-        default:
-            let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil)
-            let err = HTTPError.underlying(error, request: request, response: response)
-            return .failure(err)
-        }
-    }
-}
-
-extension RequestAlterative where Self: DataRequest {
+extension AlamofireRequest where Self: DataRequest {
     
     /// 格式化网络请求进度回调
     ///
@@ -87,17 +93,17 @@ extension RequestAlterative where Self: DataRequest {
         
         return response(queue: queue, completionHandler: { handler in
             
-            let result = self.transformResponseToResult(handler.response,
-                                                        request: handler.request,
-                                                        data: handler.data,
-                                                        error: handler.error,
-                                                        timeline: handler.timeline)
-            completionHandler(result)
+            //            let result = self.transformResponseToResult(handler.response,
+            //                                                        request: handler.request,
+            //                                                        data: handler.data,
+            //                                                        error: handler.error,
+            //                                                        timeline: handler.timeline)
+            //            completionHandler(result)
         })
     }
 }
 
-extension RequestAlterative where Self: UploadRequest {
+extension AlamofireRequest where Self: UploadRequest {
     
     /// 格式化网络请求进度回调
     ///
@@ -113,8 +119,8 @@ extension RequestAlterative where Self: UploadRequest {
     }
 }
 
-extension RequestAlterative where Self: DownloadRequest {
-    
+extension AlamofireRequest where Self: DownloadRequest {
+
     /// 格式化网络请求进度回调
     ///
     /// - Parameters:
@@ -126,7 +132,7 @@ extension RequestAlterative where Self: DownloadRequest {
             progressHandler(progress)
         })
     }
-    
+
     /// 格式化网络请求回调内容
     ///
     /// - Parameters:
@@ -134,18 +140,17 @@ extension RequestAlterative where Self: DownloadRequest {
     ///   - completionHandler: 结果回调
     /// - Returns: Request
     func response(queue: DispatchQueue?, completionHandler: @escaping CompletionHandler) -> Self {
-        
+
         return response(queue: queue, completionHandler: { handler in
-            let result = self.transformResponseToResult(handler.response,
-                                                        request: handler.request,
-                                                        data: handler.resumeData,
-                                                        error: handler.error,
-                                                        timeline: handler.timeline)
-            completionHandler(result)
+//            let result = self.transformResponseToResult(handler.response,
+//                                                        request: handler.request,
+//                                                        data: handler.resumeData,
+//                                                        error: handler.error,
+//                                                        timeline: handler.timeline)
+//            completionHandler(result)
         })
     }
 }
 
-extension DataRequest: RequestAlterative {}
-extension DownloadRequest: RequestAlterative {}
-
+extension DataRequest: AlamofireRequest {}
+extension DownloadRequest: AlamofireRequest {}

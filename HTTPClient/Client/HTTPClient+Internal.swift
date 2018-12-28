@@ -6,8 +6,6 @@
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
-import Foundation
-
 extension HTTPClient {
     
     /// 构建默认的Alamofire.SessionManager
@@ -29,37 +27,38 @@ extension HTTPClient {
     ///   - callbackQueue: 回调线程
     ///   - completionHandler: 完成回调
     /// - Returns: 请求任务
-    func sendAlamofireRequest<AF>(_ alamofireRequest: AF,
-                                  request: R,
-                                  queue: DispatchQueue?,
-                                  progressHandler: ProgressHandler?,
-                                  completionHandler: @escaping CompletionHandler)
-        -> Task where AF: RequestAlterative , AF: Request {
-            
+    internal func sendAlamofireRequest(_ alamofireRequest: AlamofireRequest,
+                                       request: R,
+                                       queue: DispatchQueue?,
+                                       progressHandler: ProgressHandler?,
+                                       completionHandler: @escaping CompletionHandler)
+        -> Task? {
+
             var statusCodes: [Int] = []
             if let validator = request as? RequestableValidator {
                 statusCodes = validator.validationType.statusCodes
             }
-            
+
             var progressAlamofireRequest = statusCodes.isEmpty ? alamofireRequest : alamofireRequest.validate(statusCode: statusCodes)
-            
+
             if progressHandler != nil {
-                //                switch alamofireRequest {
-                //                case let dataRequest as DataRequest:
-                //                    progressAlamofireRequest = dataRequest.progress(queue: queue, progressHandler: progressHandler!)
-                //                    break
-                //                case let downloadRequest as DownloadRequest:
-                //                    break
-                //                case let uploadRequest as UploadRequest:
-                //                    break
-                //                default:
-                //                    break
-                //                }
-                //                progressAlamofireRequest = alamofireRequest.progress(queue: queue, progressHandler: progressHandler!)
+                progressAlamofireRequest = progressAlamofireRequest.progress(queue: queue, progressHandler: progressHandler!)
+//                //                switch alamofireRequest {
+//                //                case let dataRequest as DataRequest:
+//                //                    progressAlamofireRequest = dataRequest.progress(queue: queue, progressHandler: progressHandler!)
+//                //                    break
+//                //                case let downloadRequest as DownloadRequest:
+//                //                    break
+//                //                case let uploadRequest as UploadRequest:
+//                //                    break
+//                //                default:
+//                //                    break
+//                //                }
+//                //                progressAlamofireRequest = alamofireRequest.progress(queue: queue, progressHandler: progressHandler!)
             }
             progressAlamofireRequest = progressAlamofireRequest.response(queue: queue, completionHandler: completionHandler)
             progressAlamofireRequest.resume()
-            
+
             return HTTPTask(progressAlamofireRequest)
     }
     
@@ -68,7 +67,7 @@ extension HTTPClient {
     /// - Parameter request: Requestable
     /// - Returns: URLRequest
     /// - Throws: HTTPError
-    func buildURLRequest(_ request: R) throws -> URLRequest {
+    internal func buildURLRequest(_ request: R) throws -> URLRequest {
         
         guard let url = URL(string: request.path, relativeTo: request.service.url) else {
             throw HTTPError.invalidUrl(service: request.service.baseUrl,
@@ -114,7 +113,7 @@ extension HTTPClient {
     ///   - queue: 回调线程
     /// - Returns: Alamofire.Request
     /// - Throws: HTTPError
-    func buildAlamofireRequest(_ request: R, requestType: RequestType, queue: DispatchQueue?) throws -> Request {
+    internal func buildAlamofireRequest(_ request: R, requestType: RequestType, queue: DispatchQueue?) throws -> AlamofireRequest {
         
         let urlRequest = try buildURLRequest(request)
         
@@ -129,7 +128,7 @@ extension HTTPClient {
             let multipartFormData: (AFMultipartFormData) -> Void = { formData in
                 formData.applyMoyaMultipartFormData(mutipartFormData)
             }
-            var initalRequest: Request?
+            var initalRequest: UploadRequest?
             var error: Error?
             manager.upload(multipartFormData: multipartFormData, with: urlRequest, queue: queue) { result in
                 switch result {

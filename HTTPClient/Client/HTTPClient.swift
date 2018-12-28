@@ -116,7 +116,7 @@ public final class HTTPClient<R: Requestable>: Client {
                      progressHandler: ProgressHandler?,
                      completionHandler: @escaping (CompletionHandler)) -> Task? {
         
-        let alamofireRequest: Request
+        let alamofireRequest: AlamofireRequest
         do {
             alamofireRequest = try buildAlamofireRequest(request, requestType: requestType, queue: queue)
         } catch let error as HTTPError {
