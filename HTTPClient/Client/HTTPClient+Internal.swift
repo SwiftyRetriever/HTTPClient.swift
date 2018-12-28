@@ -33,7 +33,6 @@ extension HTTPClient {
                                        progressHandler: ProgressHandler?,
                                        completionHandler: @escaping CompletionHandler)
         -> Task? {
-
             var statusCodes: [Int] = []
             if let validator = request as? RequestableValidator {
                 statusCodes = validator.validationType.statusCodes
@@ -57,7 +56,6 @@ extension HTTPClient {
     /// - Returns: URLRequest
     /// - Throws: HTTPError
     internal func buildURLRequest(_ request: R) throws -> URLRequest {
-        
         guard let url = URL(string: request.path, relativeTo: request.service.url) else {
             throw HTTPError.invalidUrl(service: request.service.baseUrl,
                                        path: request.path)
@@ -106,9 +104,7 @@ extension HTTPClient {
                                         requestType: RequestType,
                                         queue: DispatchQueue?) throws
         -> AlamofireRequest {
-        
             let urlRequest = try buildURLRequest(request)
-            
             switch requestType {
             case .data:
                 return manager.request(urlRequest)

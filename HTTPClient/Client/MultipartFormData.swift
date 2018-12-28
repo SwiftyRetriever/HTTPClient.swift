@@ -60,7 +60,6 @@ internal extension AFMultipartFormData {
     }
     
     func applyMoyaMultipartFormData(_ multipartBody: [MultipartFormData]) {
-        
         multipartBody.forEach { bodyPart in
             switch bodyPart.formDataType {
             case .data(let data):

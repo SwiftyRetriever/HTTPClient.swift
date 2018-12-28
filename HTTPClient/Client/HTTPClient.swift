@@ -28,7 +28,6 @@ public final class HTTPClient<R: Requestable>: Client {
                         progressHandler: ProgressHandler? = nil,
                         completionHandler: @escaping (CompletionHandler))
         -> Task? {
-
             return send(request: request,
                         requestType: .data,
                         queue: queue,
@@ -52,7 +51,6 @@ public final class HTTPClient<R: Requestable>: Client {
                          progressHandler: ProgressHandler?,
                          completionHandler: @escaping (CompletionHandler))
         -> Task? {
-            
             return send(request: request,
                         requestType: .download(destination: destination),
                         queue: queue,
@@ -76,7 +74,6 @@ public final class HTTPClient<R: Requestable>: Client {
                        progressHandler: ProgressHandler? = nil,
                        completionHandler: @escaping (CompletionHandler))
         -> Task? {
-            
             return send(request: request,
                         requestType: .uploadFile(fileURL: fileURL),
                         queue: queue,
@@ -100,7 +97,6 @@ public final class HTTPClient<R: Requestable>: Client {
                        progressHandler: ProgressHandler? = nil,
                        completionHandler: @escaping (CompletionHandler))
         -> Task? {
-            
             return send(request: request,
                         requestType: .uploadFormData(mutipartFormData: mutipartFormData),
                         queue: queue,
@@ -113,7 +109,6 @@ public final class HTTPClient<R: Requestable>: Client {
                      queue: DispatchQueue?,
                      progressHandler: ProgressHandler?,
                      completionHandler: @escaping (CompletionHandler)) -> Task? {
-        
         do {
             let alamofireRequest = try buildAlamofireRequest(request, requestType: requestType, queue: queue)
             return sendAlamofireRequest(alamofireRequest,

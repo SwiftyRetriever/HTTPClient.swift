@@ -109,7 +109,6 @@ extension TransformerError: LocalizedError {
     }
     
     public var errorDescription: String? {
-        
         switch self {
         case .statusCode, .emptyResponse, .modelDeficiency, .invalidResponseBody:
             return defaultErrorMessage

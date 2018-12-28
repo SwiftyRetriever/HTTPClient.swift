@@ -23,14 +23,12 @@ public protocol Model {
     /// - Returns: `ResponseTransformer`对象
     /// - Throws: ModelError 返回错误
     static func transform(_ value: Any, atKeyPath keyPath: String?) throws -> Self
-    
 }
 
 // MARK: - 为`String`实现`Model`协议
 extension String: Model {
     
     public static func transform(_ value: Any, atKeyPath keyPath: String?) throws -> String {
-        
         if let value = value as? JSON {
             guard let keyPath = keyPath, let result = value[keyPath] as? String else {
                 throw ModelError.cast(value: value, targetType: String.self)
@@ -49,7 +47,6 @@ extension String: Model {
 extension Dictionary : Model where Key == String, Value == Any {
     
     public static func transform(_ value: Any, atKeyPath keyPath: String?) throws -> [Key: Value] {
-        
         if let value = value as? JSON {
             if let keyPath = keyPath {
                 guard let result = value[keyPath] as? JSON else {
@@ -69,7 +66,6 @@ extension Dictionary : Model where Key == String, Value == Any {
 extension HandyJSON where Self: Model {
     
     public static func transform(_ value: Any, atKeyPath keyPath: String?) throws -> Self {
-        
         if let value = value as? JSON {
             if let keyPath = keyPath {
                 guard let val = value[keyPath] as? JSON, let result = deserialize(from: val) else {
@@ -92,7 +88,6 @@ extension HandyJSON where Self: Model {
 extension Array : Model where Element: HandyJSON, Element: Model {
     
     public static func transform(_ value: Any, atKeyPath keyPath: String?) throws -> [Element] {
-        
         if let value = value as? JSON, let keyPath = keyPath {
             guard let val = value[keyPath] as? [JSON], let result = [Element].deserialize(from: val) as? [Element]else {
                 throw ModelError.cast(value: value, targetType: HandyJSON.self)

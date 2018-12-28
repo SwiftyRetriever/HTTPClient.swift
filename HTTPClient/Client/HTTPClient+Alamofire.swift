@@ -90,7 +90,6 @@ extension AlamofireRequest where Self: DataRequest {
     ///   - completionHandler: 结果回调
     /// - Returns: Request
     func response(queue: DispatchQueue?, completionHandler: @escaping CompletionHandler) -> Self {
-        
         return response(queue: queue, completionHandler: { handler in
             
             //            let result = self.transformResponseToResult(handler.response,
