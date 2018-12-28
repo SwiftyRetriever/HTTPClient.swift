@@ -31,7 +31,7 @@
 		4DCA57EF21C13A1800576C43 /* ValidationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57EE21C13A1800576C43 /* ValidationType.swift */; };
 		4DCA57F121C13A2500576C43 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57F021C13A2500576C43 /* Requestable.swift */; };
 		4DCA57F521C13A8B00576C43 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57F421C13A8B00576C43 /* MultipartFormData.swift */; };
-		4DCA57FD21C13AC100576C43 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57FC21C13AC100576C43 /* HTTPTask.swift */; };
+		4DCA57FD21C13AC100576C43 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57FC21C13AC100576C43 /* Task.swift */; };
 		4DCA57FF21C13AEC00576C43 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA57FE21C13AEC00576C43 /* HTTPError.swift */; };
 		4DCA580121C13AF900576C43 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580021C13AF900576C43 /* Client.swift */; };
 		4DCA580721C13B9400576C43 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA580621C13B9400576C43 /* Response.swift */; };
@@ -128,7 +128,7 @@
 		4DCA57EE21C13A1800576C43 /* ValidationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationType.swift; sourceTree = "<group>"; };
 		4DCA57F021C13A2500576C43 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		4DCA57F421C13A8B00576C43 /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
-		4DCA57FC21C13AC100576C43 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
+		4DCA57FC21C13AC100576C43 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		4DCA57FE21C13AEC00576C43 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		4DCA580021C13AF900576C43 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		4DCA580621C13B9400576C43 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 			children = (
 				4D054AE721C3F16700688207 /* Plugins.swift */,
 				4DCA57F421C13A8B00576C43 /* MultipartFormData.swift */,
-				4DCA57FC21C13AC100576C43 /* HTTPTask.swift */,
+				4DCA57FC21C13AC100576C43 /* Task.swift */,
 				4DCA580021C13AF900576C43 /* Client.swift */,
 				4DCA57EA21C139CE00576C43 /* HTTPClient.swift */,
 				4DD1F62F21D4840400138207 /* HTTPClient+Internal.swift */,
@@ -425,6 +425,7 @@
 				4DCA57CC21C1384A00576C43 /* Sources */,
 				4DCA57CD21C1384A00576C43 /* Frameworks */,
 				4DCA57CE21C1384A00576C43 /* Resources */,
+				4DC23C7721D5D1E4008C3F18 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -593,6 +594,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4DC23C7721D5D1E4008C3F18 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4D0D881C21D22D1F00914EDC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -629,7 +651,7 @@
 				4DD1F63021D4840400138207 /* HTTPClient+Internal.swift in Sources */,
 				4DCA580721C13B9400576C43 /* Response.swift in Sources */,
 				4DCA580921C13BA600576C43 /* Model.swift in Sources */,
-				4DCA57FD21C13AC100576C43 /* HTTPTask.swift in Sources */,
+				4DCA57FD21C13AC100576C43 /* Task.swift in Sources */,
 				4DCA57ED21C139DD00576C43 /* Serviceable.swift in Sources */,
 				4DCA580121C13AF900576C43 /* Client.swift in Sources */,
 			);
