@@ -6,7 +6,7 @@
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
-public protocol Serviceable  {
+public protocol Serviceable {
     
     /// 服务器基础路径
     var baseUrl: String { get }
@@ -15,7 +15,7 @@ public protocol Serviceable  {
 extension Serviceable {
     
     var url: URL {
+        // swiftlint:disable force_unwrapping
         return URL(string: baseUrl)!
     }
 }
-

@@ -20,6 +20,7 @@ public enum RequestType {
 
 public protocol Client: AnyObject {
     
+    // swiftlint:disable:next type_name
     associatedtype R: Requestable
     
     /// 发送一个网络请求
@@ -31,7 +32,7 @@ public protocol Client: AnyObject {
     ///   - progressHandler: 进度回调
     ///   - completionHandler: 完成回调
     /// - Returns: 请求任务
+    // swiftlint:disable:next line_length
     func send(request: R, requestType: RequestType, queue: DispatchQueue?, progressHandler: ProgressHandler?, completionHandler: @escaping (CompletionHandler)) -> Task?
 
 }
-

@@ -42,14 +42,14 @@ public final class CommonTransformer: Transformer {
     public func transform(_ response: Response) throws -> Any {
         
         /// 校验response的statuscode是否为2xx和3xx
-        let _response: Response
+        let validResponse: Response
         do {
-            _response = try response.validate(.successAndRedirectCodes)
+            validResponse = try response.validate(.successAndRedirectCodes)
         } catch {
             throw TransformerError.statusCode
         }
         
-        guard let jsonObject = try _response.mapJSON() as? [String: Any] else {
+        guard let jsonObject = try validResponse.mapJSON() as? [String: Any] else {
             throw TransformerError.emptyResponse
         }
         
@@ -144,4 +144,3 @@ extension TransformerError: CustomStringConvertible, CustomDebugStringConvertibl
         return description
     }
 }
-

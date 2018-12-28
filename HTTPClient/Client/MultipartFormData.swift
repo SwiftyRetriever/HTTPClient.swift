@@ -54,7 +54,9 @@ internal extension AFMultipartFormData {
     }
     
     func append(stream: InputStream, length: UInt64, bodyPart: MultipartFormData) {
-        append(stream, withLength: length, name: bodyPart.name, fileName: bodyPart.fileName ?? "", mimeType: bodyPart.mimeType ?? "")
+        let fileName = bodyPart.fileName ?? ""
+        let mimeType = bodyPart.mimeType ?? ""
+        append(stream, withLength: length, name: bodyPart.name, fileName: fileName, mimeType: mimeType)
     }
     
     func applyMoyaMultipartFormData(_ multipartBody: [MultipartFormData]) {
@@ -71,4 +73,3 @@ internal extension AFMultipartFormData {
         }
     }
 }
-

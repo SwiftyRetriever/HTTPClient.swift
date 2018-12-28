@@ -131,4 +131,3 @@ public final class HTTPClient<R: Requestable>: Client {
         }
     }
 }
-

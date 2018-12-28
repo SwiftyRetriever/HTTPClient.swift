@@ -59,41 +59,61 @@ extension Response {
 
 extension Response {
     
+    ///将Response中的数据转换成图片
+    ///
+    /// - Returns: 图片数据
+    /// - Throws: HTTPError
     public func mapImage() throws -> UIImage {
-        
-        guard let d = data, d.count > 0 else {
+        guard let data = data, !data.isEmpty else {
             throw HTTPError.emptyResponse(request: request, response: response)
         }
-        guard let image = UIImage(data: d) else {
+        guard let image = UIImage(data: data) else {
             throw HTTPError.emptyResponse(request: request, response: response)
         }
         return image
     }
     
+    ///将Response中的数据转换成JSON
+    ///
+    /// - Returns: JSON数据
+    /// - Throws: HTTPError
     public func mapJSON() throws -> Any {
-        
-        guard let d = data, d.count > 0 else {
+        guard let data = data, !data.isEmpty else {
             throw HTTPError.emptyResponse(request: request, response: response)
         }
         do {
-            return try JSONSerialization.jsonObject(with: d, options: .allowFragments)
+            return try JSONSerialization.jsonObject(with: data, options: .allowFragments)
         } catch {
             throw HTTPError.underlying(error, request: request, response: response)
         }
     }
     
+    ///将Response中的数据转换成String
+    ///
+    /// - Parameter keyPath: 字典中对应的Key
+    /// - Returns: String数据
+    /// - Throws: HTTPError
     public func mapString(atKeyPath keyPath: String? = nil) throws -> String {
-        
-        guard let d = data, d.count > 0 else {
+        guard let data = data, !data.isEmpty else {
             throw HTTPError.emptyResponse(request: request, response: response)
         }
-        guard let string = String(data: d, encoding: .utf8) else {
+        guard let string = String(data: data, encoding: .utf8) else {
             throw HTTPError.emptyResponse(request: request, response: response)
         }
         return string
     }
     
-    public func map<T>(to type: T.Type, atKeyPath keyPath: String? = nil, transformer: Transformer = CommonTransformer()) throws -> T where T: Model {
+    /// 将数据转换为`Model`
+    ///
+    /// - Parameters:
+    ///   - type: 数据类型
+    ///   - keyPath: 字典中对应的Key
+    ///   - transformer: 转换器，转换规则
+    /// - Returns: Model数据
+    /// - Throws: HTTPError
+    public func map<T>(to type: T.Type,
+                       atKeyPath keyPath: String? = nil,
+                       transformer: Transformer = CommonTransformer()) throws -> T where T: Model {
         do {
             let result = try transformer.transform(self)
             return try T.transform(result, atKeyPath: keyPath)
@@ -106,6 +126,7 @@ extension Response {
 extension Response: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
+        // swiftlint:disable force_unwrapping
         return """
         ============================================================
         网络请求结果
@@ -126,20 +147,15 @@ extension Response: CustomStringConvertible, CustomDebugStringConvertible {
 // MARK: - URLRequest
 
 extension URLRequest {
-    
     var service: String {
         var service = ""
-        
         if let scheme = url?.scheme {
             service.append(scheme)
             service.append("://")
         }
-        
         if let host = url?.host {
             service.append(host)
         }
-        
         return service
     }
 }
-

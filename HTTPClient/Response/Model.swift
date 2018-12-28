@@ -48,7 +48,7 @@ extension String: Model {
 // MARK: - 为`Dictionary`实现`Model`协议
 extension Dictionary : Model where Key == String, Value == Any {
     
-    public static func transform(_ value: Any, atKeyPath keyPath: String?) throws -> Dictionary<Key, Value> {
+    public static func transform(_ value: Any, atKeyPath keyPath: String?) throws -> [Key: Value] {
         
         if let value = value as? JSON {
             if let keyPath = keyPath {
@@ -72,7 +72,7 @@ extension HandyJSON where Self: Model {
         
         if let value = value as? JSON {
             if let keyPath = keyPath {
-                guard let v = value[keyPath] as? JSON, let result = deserialize(from: v) else {
+                guard let val = value[keyPath] as? JSON, let result = deserialize(from: val) else {
                     throw ModelError.cast(value: value, targetType: HandyJSON.self)
                 }
                 return result
@@ -91,15 +91,15 @@ extension HandyJSON where Self: Model {
 // MARK: - 为`Array`实现`Model`协议
 extension Array : Model where Element: HandyJSON, Element: Model {
     
-    public static func transform(_ value: Any, atKeyPath keyPath: String?) throws -> Array<Element> {
+    public static func transform(_ value: Any, atKeyPath keyPath: String?) throws -> [Element] {
         
         if let value = value as? JSON, let keyPath = keyPath {
-            guard let v = value[keyPath] as? [JSON], let result = [Element].deserialize(from: v) as? [Element]else {
+            guard let val = value[keyPath] as? [JSON], let result = [Element].deserialize(from: val) as? [Element]else {
                 throw ModelError.cast(value: value, targetType: HandyJSON.self)
             }
             return result
         } else {
-            guard let v = value as? [JSON], let result = [Element].deserialize(from: v) as? [Element]else {
+            guard let val = value as? [JSON], let result = [Element].deserialize(from: val) as? [Element]else {
                 throw ModelError.cast(value: value, targetType: HandyJSON.self)
             }
             return result
@@ -144,4 +144,3 @@ extension None: CustomStringConvertible, CustomDebugStringConvertible {
         return description
     }
 }
-

@@ -13,6 +13,7 @@ import HTTPClient
 
 extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Response {
     
+    // swiftlint:disable line_length
     public func validate<S>(statusCode acceptableStatusCodes: S) -> Single<ElementType> where S : Sequence, S.Element == Int {
         return flatMap { .just(try $0.validate(statusCode: acceptableStatusCodes)) }
     }
@@ -33,8 +34,10 @@ extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Respo
         return flatMap { .just(try $0.mapString(atKeyPath: keyPath)) }
     }
     
-    public func map<T>(to type: T.Type, atKeyPath keyPath: String? = nil, transformer: Transformer = CommonTransformer()) -> Single<T> where T: Model {
-        return flatMap { .just(try $0.map(to: type, atKeyPath: keyPath, transformer: transformer)) }
+    public func map<T>(to type: T.Type,
+                       atKeyPath keyPath: String? = nil,
+                       transformer: Transformer = CommonTransformer())
+        -> Single<T> where T: Model {
+            return flatMap { .just(try $0.map(to: type, atKeyPath: keyPath, transformer: transformer)) }
     }
 }
-

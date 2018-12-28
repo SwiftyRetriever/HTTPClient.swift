@@ -39,13 +39,17 @@ extension HTTPClient {
                 statusCodes = validator.validationType.statusCodes
             }
 
-            var progressAlamofireRequest = statusCodes.isEmpty ? alamofireRequest : alamofireRequest.validate(statusCode: statusCodes)
+            var validationRequest = statusCodes.isEmpty ?
+                alamofireRequest :
+                alamofireRequest.validate(statusCode: statusCodes)
+            
             if progressHandler != nil {
-                progressAlamofireRequest = progressAlamofireRequest.progress(queue: queue, progressHandler: progressHandler!)
+                //swiftlint:disable force_unwrapping
+                validationRequest = validationRequest.progress(queue: queue, progressHandler: progressHandler!)
             }
-            progressAlamofireRequest = progressAlamofireRequest.response(queue: queue, completionHandler: completionHandler)
-            progressAlamofireRequest.resume()
-            return HTTPTask(progressAlamofireRequest)
+            validationRequest = validationRequest.response(queue: queue, completionHandler: completionHandler)
+            validationRequest.resume()
+            return HTTPTask(validationRequest)
     }
     
     /// 构建URLRequest，从一个Requestable转换为URLRequest
@@ -99,35 +103,38 @@ extension HTTPClient {
     ///   - queue: 回调线程
     /// - Returns: Alamofire.Request
     /// - Throws: HTTPError
-    internal func buildAlamofireRequest(_ request: R, requestType: RequestType, queue: DispatchQueue?) throws -> AlamofireRequest {
+    internal func buildAlamofireRequest(_ request: R,
+                                        requestType: RequestType,
+                                        queue: DispatchQueue?) throws
+        -> AlamofireRequest {
         
-        let urlRequest = try buildURLRequest(request)
-        
-        switch requestType {
-        case .data:
-            return manager.request(urlRequest)
-        case .download(let destination):
-            return manager.download(urlRequest, to: destination)
-        case .uploadFile(let fileURL):
-            return manager.upload(fileURL, with: urlRequest)
-        case .uploadFormData(let mutipartFormData):
-            let multipartFormData: (AFMultipartFormData) -> Void = { formData in
-                formData.applyMoyaMultipartFormData(mutipartFormData)
-            }
-            var initalRequest: UploadRequest?
-            var error: Error?
-            manager.upload(multipartFormData: multipartFormData, with: urlRequest, queue: queue) { result in
-                switch result {
-                case .success(let uploadRequest, _, _):
-                    initalRequest = uploadRequest
-                case .failure(let err):
-                    error = err
+            let urlRequest = try buildURLRequest(request)
+            
+            switch requestType {
+            case .data:
+                return manager.request(urlRequest)
+            case .download(let destination):
+                return manager.download(urlRequest, to: destination)
+            case .uploadFile(let fileURL):
+                return manager.upload(fileURL, with: urlRequest)
+            case .uploadFormData(let mutipartFormData):
+                let multipartFormData: (AFMultipartFormData) -> Void = { formData in
+                    formData.applyMoyaMultipartFormData(mutipartFormData)
                 }
+                var initalRequest: UploadRequest?
+                var error: Error?
+                manager.upload(multipartFormData: multipartFormData, with: urlRequest, queue: queue) { result in
+                    switch result {
+                    case .success(let uploadRequest, _, _):
+                        initalRequest = uploadRequest
+                    case .failure(let err):
+                        error = err
+                    }
+                }
+                guard let alamofireRequest = initalRequest else {
+                    throw HTTPError.upload(service: request.service.baseUrl, path: request.path, error: error)
+                }
+                return alamofireRequest
             }
-            guard let alamofireRequest = initalRequest else {
-                throw HTTPError.upload(service: request.service.baseUrl, path: request.path, error: error)
-            }
-            return alamofireRequest
-        }
     }
 }

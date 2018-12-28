@@ -10,7 +10,7 @@ import RxSwift
 #if !COCOAPODS
 import HTTPClient
 #endif
-/*
+
 extension HTTPClient: ReactiveCompatible {}
 
 public extension Reactive where Base: Client {
@@ -24,10 +24,8 @@ public extension Reactive where Base: Client {
                 switch result {
                 case .success(let value):
                     single(.success(value))
-                    break
                 case .failure(let error):
                     single(.error(error))
-                    break
                 }
             })
             
@@ -39,26 +37,27 @@ public extension Reactive where Base: Client {
     
     // MARK: Download
     @discardableResult
-    public func downlown(request: Base.R, destination: Destination? = nil, queue: DispatchQueue? = .main) -> Single<Response> {
+    public func downlown(request: Base.R,
+                         destination: Destination? = nil,
+                         queue: DispatchQueue? = .main)
+        -> Single<Response> {
         
-        return Single.create(subscribe: { [weak base] single -> Disposable in
-            let task = base?.downlown(request: request, destination: destination, queue: queue, progressHandler: nil, completionHandler: {
-                result in
+            return Single.create(subscribe: { [weak base] single -> Disposable in
+                let task = base?.downlown(request: request, destination: destination, queue: queue, progressHandler: nil, completionHandler: {
+                    result in
+                    
+                    switch result {
+                    case .success(let value):
+                        single(.success(value))
+                    case .failure(let error):
+                        single(.error(error))
+                    }
+                })
                 
-                switch result {
-                case .success(let value):
-                    single(.success(value))
-                    break
-                case .failure(let error):
-                    single(.error(error))
-                    break
+                return Disposables.create {
+                    task?.cancel()
                 }
             })
-            
-            return Disposables.create {
-                task?.cancel()
-            }
-        })
     }
     
     // MARK: Upload
@@ -72,10 +71,8 @@ public extension Reactive where Base: Client {
                 switch result {
                 case .success(let value):
                     single(.success(value))
-                    break
                 case .failure(let error):
                     single(.error(error))
-                    break
                 }
             })
             
@@ -96,10 +93,8 @@ public extension Reactive where Base: Client {
                 switch result {
                 case .success(let value):
                     single(.success(value))
-                    break
                 case .failure(let error):
                     single(.error(error))
-                    break
                 }
             })
             
@@ -109,5 +104,3 @@ public extension Reactive where Base: Client {
         })
     }
 }
-
-*/

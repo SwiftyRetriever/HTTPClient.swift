@@ -33,8 +33,10 @@ extension ObservableType where E == Response {
         return flatMap { Observable.just( try $0.mapString(atKeyPath: keyPath)) }
     }
     
-    public func map<T>(to type: T.Type, atKeyPath keyPath: String? = nil, transformer: Transformer = CommonTransformer()) -> Observable<T> where T: Model {
-        return flatMap { Observable.just(try $0.map(to: type, atKeyPath: keyPath, transformer: transformer)) }
+    public func map<T>(to type: T.Type,
+                       atKeyPath keyPath: String? = nil,
+                       transformer: Transformer = CommonTransformer())
+        -> Observable<T> where T: Model {
+            return flatMap { Observable.just(try $0.map(to: type, atKeyPath: keyPath, transformer: transformer)) }
     }
 }
-

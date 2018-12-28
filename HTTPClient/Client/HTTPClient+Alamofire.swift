@@ -77,7 +77,7 @@ extension AlamofireRequest where Self: DataRequest {
     ///   - queue: 回调线程
     ///   - progressHandler: 进度回调
     /// - Returns: Request
-    func progress(queue: DispatchQueue?, progressHandler: @escaping ProgressHandler) -> Self  {
+    func progress(queue: DispatchQueue?, progressHandler: @escaping ProgressHandler) -> Self {
         return downloadProgress(queue: queue ?? .main, closure: { progress in
             progressHandler(progress)
         })
@@ -89,7 +89,7 @@ extension AlamofireRequest where Self: DataRequest {
     ///   - queue: 回调线程
     ///   - completionHandler: 结果回调
     /// - Returns: Request
-    func response(queue: DispatchQueue?, completionHandler: @escaping CompletionHandler) -> Self  {
+    func response(queue: DispatchQueue?, completionHandler: @escaping CompletionHandler) -> Self {
         
         return response(queue: queue, completionHandler: { handler in
             

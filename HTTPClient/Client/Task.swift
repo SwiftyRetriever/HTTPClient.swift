@@ -23,7 +23,7 @@ public protocol Task {
 
 public final class HTTPTask: Task {
     
-    public typealias CancelAction = () -> ()
+    public typealias CancelAction = () -> Void
     
     public private(set) var isCancelled: Bool = false
     
@@ -55,7 +55,9 @@ public final class HTTPTask: Task {
     public func cancel() {
         _ = lock.wait(timeout: DispatchTime.distantFuture)
         defer { lock.signal() }
-        guard !isCancelled else { return }
+        guard !isCancelled else {
+            return
+        }
         isCancelled = true
         cancelAction()
     }
@@ -71,4 +73,3 @@ extension HTTPTask: CustomStringConvertible, CustomDebugStringConvertible {
         return request.request?.debugDescription ?? "HTTPTask"
     }
 }
-

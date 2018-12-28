@@ -15,8 +15,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-
 }
 
 enum DanluService: Serviceable {
@@ -37,11 +35,8 @@ struct LoginRequest: Requestable {
     
     var formatter: ParameterFormatter { return .json }
     
-    
     typealias Service = DanluService
     
     var get: String { return "" }
 
-    
-    
 }

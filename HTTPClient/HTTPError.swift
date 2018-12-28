@@ -147,4 +147,3 @@ extension HTTPError: CustomStringConvertible, CustomDebugStringConvertible {
         return description
     }
 }
-
