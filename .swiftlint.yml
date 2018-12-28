@@ -18,7 +18,6 @@ disabled_rules: # Rule identifiers to exclude from running
   - closure_parameter_position
   - redundant_string_enum_value
   - trailing_whitespace
-  - vertical_parameter_alignment
 
 excluded: # paths to ignore during linting. overridden by `included`.
   - Carthage
@@ -49,11 +48,7 @@ large_tuple:
 allow_private_set:
  - allow_private_set: true
 
-trailing_whitespace:
-  - 1
-
 opt_in_rules:
-  - force_unwrapping
   - conditional_returns_on_newline
   - private_outlet
   - vertical_whitespace

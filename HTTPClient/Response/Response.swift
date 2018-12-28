@@ -126,7 +126,6 @@ extension Response {
 extension Response: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
-        // swiftlint:disable force_unwrapping
         return """
         ============================================================
         网络请求结果

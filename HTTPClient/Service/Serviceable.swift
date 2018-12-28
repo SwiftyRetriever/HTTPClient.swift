@@ -15,7 +15,6 @@ public protocol Serviceable {
 extension Serviceable {
     
     var url: URL {
-        // swiftlint:disable force_unwrapping
         return URL(string: baseUrl)!
     }
 }
