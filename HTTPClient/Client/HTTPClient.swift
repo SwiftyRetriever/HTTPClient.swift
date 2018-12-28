@@ -6,8 +6,6 @@
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 
-import Result
-
 public final class HTTPClient<R: Requestable>: Client {
     
     public let manager: SessionManager
@@ -116,9 +114,13 @@ public final class HTTPClient<R: Requestable>: Client {
                      progressHandler: ProgressHandler?,
                      completionHandler: @escaping (CompletionHandler)) -> Task? {
         
-        let alamofireRequest: AlamofireRequest
         do {
-            alamofireRequest = try buildAlamofireRequest(request, requestType: requestType, queue: queue)
+            let alamofireRequest = try buildAlamofireRequest(request, requestType: requestType, queue: queue)
+            return sendAlamofireRequest(alamofireRequest,
+                                        request: request,
+                                        queue: queue,
+                                        progressHandler: progressHandler,
+                                        completionHandler: completionHandler)
         } catch let error as HTTPError {
             completionHandler(.failure(error))
             return nil
@@ -127,8 +129,6 @@ public final class HTTPClient<R: Requestable>: Client {
             completionHandler(.failure(err))
             return nil
         }
-        
-        return nil
     }
 }
 

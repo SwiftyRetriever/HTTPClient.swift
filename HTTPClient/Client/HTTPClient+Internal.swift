@@ -40,25 +40,11 @@ extension HTTPClient {
             }
 
             var progressAlamofireRequest = statusCodes.isEmpty ? alamofireRequest : alamofireRequest.validate(statusCode: statusCodes)
-
             if progressHandler != nil {
                 progressAlamofireRequest = progressAlamofireRequest.progress(queue: queue, progressHandler: progressHandler!)
-//                //                switch alamofireRequest {
-//                //                case let dataRequest as DataRequest:
-//                //                    progressAlamofireRequest = dataRequest.progress(queue: queue, progressHandler: progressHandler!)
-//                //                    break
-//                //                case let downloadRequest as DownloadRequest:
-//                //                    break
-//                //                case let uploadRequest as UploadRequest:
-//                //                    break
-//                //                default:
-//                //                    break
-//                //                }
-//                //                progressAlamofireRequest = alamofireRequest.progress(queue: queue, progressHandler: progressHandler!)
             }
             progressAlamofireRequest = progressAlamofireRequest.response(queue: queue, completionHandler: completionHandler)
             progressAlamofireRequest.resume()
-
             return HTTPTask(progressAlamofireRequest)
     }
     
