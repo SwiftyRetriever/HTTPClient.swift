@@ -95,7 +95,7 @@ extension HTTPError: CustomStringConvertible, CustomDebugStringConvertible {
             上传文件错误，请检查上传内容是否正确
             Service: \(service)
             Path: \(path)
-            Error: \(error)
+            Error: \(String(describing: error))
             ============================================================
             """
         case .emptyResponse(let request, _):

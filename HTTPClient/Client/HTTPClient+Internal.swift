@@ -38,13 +38,13 @@ extension HTTPClient {
             if let validator = request as? RequestableValidator {
                 statusCodes = validator.validationType.statusCodes
             }
-
+            
             var validationRequest = statusCodes.isEmpty ?
                 alamofireRequest :
                 alamofireRequest.validate(statusCode: statusCodes)
             
             if progressHandler != nil {
-                //swiftlint:disable force_unwrapping
+                // swiftlint:disable force_unwrapping
                 validationRequest = validationRequest.progress(queue: queue, progressHandler: progressHandler!)
             }
             validationRequest = validationRequest.response(queue: queue, completionHandler: completionHandler)

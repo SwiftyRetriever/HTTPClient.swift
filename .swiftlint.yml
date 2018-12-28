@@ -22,20 +22,13 @@ disabled_rules: # Rule identifiers to exclude from running
 
 excluded: # paths to ignore during linting. overridden by `included`.
   - Carthage
-  - Pods
-  - External
-  - Submodules
-  - Generated
-  - Core/Model/CoreData
-  - Database/Model
-  - fastlane
   - RxHTTPClient
   - Example
 
 # rule parameters
 file_length:
-  - 600 #warning
-  - 800 #error
+  - 800 #warning
+  - 1000 #error
 
 function_body_length:
   - 60 #warning
@@ -71,4 +64,6 @@ opt_in_rules:
   - attributes
   - closure_end_indentation
   - empty_count
+  - large_tuple
+  - function_parameter_count
 
